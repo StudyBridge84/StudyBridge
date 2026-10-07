@@ -1,0 +1,7601 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Study Point</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    color:#222;
+    transition:.3s;
+}
+
+body.dark{
+    background:#111827;
+    color:#eee;
+}
+
+header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+}
+
+header h1{
+    font-size:34px;
+    margin-bottom:8px;
+}
+
+nav{
+    background:white;
+    padding:14px;
+    text-align:center;
+    box-shadow:0 2px 10px #ddd;
+    position:sticky;
+    top:0;
+    z-index:20;
+}
+
+.dark nav{
+    background:#1f2937;
+}
+
+nav a{
+    color:#2563eb;
+    text-decoration:none;
+    font-weight:bold;
+    margin:5px 8px;
+    display:inline-block;
+}
+
+.dark nav a{
+    color:#93c5fd;
+}
+
+button{
+    background:#2563eb;
+    color:white;
+    border:0;
+    padding:11px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.hero{
+    text-align:center;
+    padding:40px 15px;
+}
+
+.hero h2{
+    font-size:30px;
+    margin-bottom:12px;
+}
+
+.search{
+    max-width:600px;
+    margin:20px auto;
+}
+
+.search input{
+    width:100%;
+    padding:14px;
+    border:2px solid #2563eb;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.section{
+    max-width:1100px;
+    margin:auto;
+    padding:30px 15px;
+}
+
+.section h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:14px;
+    box-shadow:0 3px 12px #ddd;
+    text-align:center;
+}
+
+.dark .card,
+.dark .dashboard,
+.dark .login-box{
+    background:#1f2937;
+    box-shadow:0 3px 12px #000;
+}
+
+.card h3{
+    color:#2563eb;
+    margin-bottom:12px;
+}
+
+.card p{
+    line-height:1.6;
+    margin-bottom:15px;
+}
+
+.hidden{
+    display:none;
+}
+
+.dashboard{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 3px 12px #ddd;
+}
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.avatar{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:#2563eb;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    font-weight:bold;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(150px,1fr));
+    gap:15px;
+    margin-top:20px;
+}
+
+.stat{
+    background:#f1f5f9;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+}
+
+.dark .stat{
+    background:#374151;
+}
+
+.stat strong{
+    display:block;
+    font-size:28px;
+    color:#2563eb;
+    margin-top:8px;
+}
+
+.login-box{
+    max-width:450px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 3px 12px #ddd;
+}
+
+.login-box input{
+    width:100%;
+    padding:13px;
+    margin:8px 0 15px;
+    border:1px solid #bbb;
+    border-radius:8px;
+}
+
+.chapter{
+    background:white;
+    padding:18px;
+    margin:10px auto;
+    max-width:750px;
+    border-radius:10px;
+    box-shadow:0 2px 8px #ddd;
+}
+
+.dark .chapter{
+    background:#1f2937;
+}
+
+.chapter button{
+    float:right;
+}
+
+.clear{
+    clear:both;
+}
+
+.quiz-box{
+    max-width:750px;
+    margin:auto;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 3px 12px #ddd;
+}
+
+.dark .quiz-box{
+    background:#1f2937;
+}
+
+.option{
+    display:block;
+    padding:14px;
+    margin:10px 0;
+    background:#f1f5f9;
+    border-radius:8px;
+}
+
+.dark .option{
+    background:#374151;
+}
+
+.progress{
+    width:100%;
+    height:12px;
+    background:#e5e7eb;
+    border-radius:20px;
+    overflow:hidden;
+    margin:15px 0 25px;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:#2563eb;
+    transition:.3s;
+}
+
+footer{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:30px;
+    margin-top:40px;
+}
+
+@media(max-width:600px){
+
+    header h1{
+        font-size:27px;
+    }
+
+    .hero h2{
+        font-size:24px;
+    }
+
+    .profile{
+        flex-direction:column;
+        text-align:center;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>📚 Study Point</h1>
+
+<p>
+Class 8 & Class 9 Online Study
+</p>
+
+</header>
+
+
+<nav>
+
+<a href="#home">Home</a>
+<a href="#classes">Classes</a>
+<a href="#dashboard">Dashboard</a>
+<a href="#quiz">Quiz</a>
+<a href="#login">Login</a>
+
+<br><br>
+
+<button onclick="toggleDarkMode()">
+🌙 Dark Mode
+</button>
+
+</nav>
+
+
+<!-- HOME -->
+
+<section class="hero" id="home">
+
+<h2>
+🎓 पढ़ाई अब आसान बनाएं
+</h2>
+
+<p>
+Notes • Questions • Quiz • Progress
+</p>
+
+<div class="search">
+
+<input
+type="text"
+id="searchBox"
+placeholder="🔍 Subject या Chapter खोजें..."
+onkeyup="searchContent()">
+
+</div>
+
+</section>
+
+
+<!-- LOGIN -->
+
+<section class="section" id="login">
+
+<h2>🔐 Student Login</h2>
+
+<div class="login-box">
+
+<label>
+Student Name
+</label>
+
+<input
+type="text"
+id="studentName"
+placeholder="अपना नाम लिखें">
+
+
+<label>
+Email
+</label>
+
+<input
+type="email"
+id="studentEmail"
+placeholder="Email लिखें">
+
+
+<button onclick="loginStudent()">
+Login / Continue
+</button>
+
+<p
+id="loginMessage"
+style="margin-top:15px;">
+</p>
+
+</div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+
+<section class="section" id="dashboard">
+
+<h2>📊 Student Dashboard</h2>
+
+<div class="dashboard">
+
+<div class="profile">
+
+<div class="avatar" id="avatar">
+S
+</div>
+
+<div>
+
+<h2 id="profileName">
+Student
+</h2>
+
+<p id="profileEmail">
+Login करने के बाद profile दिखेगी।
+</p>
+
+</div>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+
+📚
+<p>Chapters Studied</p>
+
+<strong id="chapterCount">
+0
+</strong>
+
+</div>
+
+
+<div class="stat">
+
+🧠
+<p>Quiz Attempts</p>
+
+<strong id="quizAttempts">
+0
+</strong>
+
+</div>
+
+
+<div class="stat">
+
+🏆
+<p>Best Score</p>
+
+<strong id="bestScore">
+0%
+</strong>
+
+</div>
+
+
+<div class="stat">
+
+⭐
+<p>Total Points</p>
+
+<strong id="totalPoints">
+0
+</strong>
+
+</div>
+
+</div>
+
+<br>
+
+<button onclick="logoutStudent()">
+Logout
+</button>
+
+</div>
+
+</section>
+
+
+<!-- CLASSES -->
+
+<section class="section" id="classes">
+
+<h2>📖 Classes</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>📘 Class 8</h3>
+
+<p>
+Class 8 Study Material
+</p>
+
+<button onclick="showClass('class8')">
+Open
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h3>📕 Class 9</h3>
+
+<p>
+Class 9 Study Material
+</p>
+
+<button onclick="showClass('class9')">
+Open
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CLASS 8 -->
+
+<section class="section hidden" id="class8">
+
+<h2>📘 Class 8 Subjects</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>🔢 Mathematics</h3>
+<p>Maths Chapters</p>
+<button onclick="openChapters('math8')">
+Chapters
+</button>
+</div>
+
+<div class="card">
+<h3>🔬 Science</h3>
+<p>Science Chapters</p>
+<button onclick="openChapters('science8')">
+Chapters
+</button>
+</div>
+
+<div class="card">
+<h3>🌍 Social Science</h3>
+<p>History • Geography • Civics</p>
+<button onclick="openChapters('sst8')">
+Chapters
+</button>
+</div>
+
+<div class="card">
+<h3>📖 English</h3>
+<p>Grammar • Literature</p>
+<button onclick="openChapters('english8')">
+Chapters
+</button>
+</div>
+
+<div class="card">
+<h3>📝 Hindi</h3>
+<p>Grammar • Literature</p>
+<button onclick="openChapters('hindi8')">
+Chapters
+</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CLASS 9 -->
+
+<section class="section hidden" id="class9">
+
+<h2>📕 Class 9 Subjects</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>🔢 Mathematics</h3>
+<p>Maths Chapters</p>
+<button onclick="openChapters('math9')">
+Chapters
+</button>
+</div>
+
+<div class="card">
+<h3>🔬 Science</h3>
+<p>Science Chapters</p>
+<button onclick="openChapters('science9')">
+Chapters
+</button>
+</div>
+
+<div class="card">
+<h3>🌍 Social Science</h3>
+<p>History • Geography • Civics</p>
+<button onclick="openChapters('sst9')">
+Chapters
+</button>
+</div>
+
+<div class="card">
+<h3>📖 English</h3>
+<p>Grammar • Literature</p>
+<button onclick="openChapters('english9')">
+Chapters
+</button>
+</div>
+
+<div class="card">
+<h3>📝 Hindi</h3>
+<p>Grammar • Literature</p>
+<button onclick="openChapters('hindi9')">
+Chapters
+</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CHAPTERS -->
+
+<section class="section" id="subjects">
+
+<h2>📚 Chapters</h2>
+
+<div id="chapterList">
+
+<p style="text-align:center">
+पहले कोई subject चुनें।
+</p>
+
+</div>
+
+</section>
+
+
+<!-- QUIZ -->
+
+<section class="section" id="quiz">
+
+<h2>🧠 Online Quiz</h2>
+
+<div class="quiz-box">
+
+<h3 id="questionText">
+भारत की राजधानी क्या है?
+</h3>
+
+<div class="progress">
+
+<div
+id="progressBar"
+class="progress-bar">
+</div>
+
+</div>
+
+<div id="options"></div>
+
+<br>
+
+<button onclick="submitQuiz()">
+Submit Answer
+</button>
+
+<p
+id="quizResult"
+style="margin-top:20px;text-align:center;">
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="section">
+
+<h2>ℹ️ About Study Point</h2>
+
+<div class="card">
+
+<p>
+Study Point students के लिए Notes,
+Questions, Quiz और Progress Tracking
+की सुविधा देने वाली educational website है।
+</p>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<p>
+© 2026 Study Point
+</p>
+
+<p>
+Made for Students ❤️
+</p>
+
+</footer>
+
+
+
+<script>
+
+
+/* =========================
+   CHAPTER DATA
+========================= */
+
+const chapters={
+
+math8:[
+"Rational Numbers",
+"Linear Equations",
+"Understanding Quadrilaterals",
+"Practical Geometry",
+"Data Handling",
+"Squares and Square Roots"
+],
+
+science8:[
+"Crop Production",
+"Microorganisms",
+"Coal and Petroleum",
+"Combustion and Flame",
+"Conservation of Plants",
+"Reproduction in Animals"
+],
+
+sst8:[
+"History",
+"Geography",
+"Civics",
+"Resources",
+"Agriculture",
+"Industries"
+],
+
+english8:[
+"Grammar",
+"Reading",
+"Writing",
+"Literature",
+"Vocabulary"
+],
+
+hindi8:[
+"गद्य",
+"पद्य",
+"व्याकरण",
+"लेखन",
+"अपठित बोध"
+],
+
+math9:[
+"Number Systems",
+"Polynomials",
+"Coordinate Geometry",
+"Linear Equations",
+"Euclid's Geometry",
+"Lines and Angles",
+"Triangles"
+],
+
+science9:[
+"Matter",
+"Fundamental Unit of Life",
+"Tissues",
+"Motion",
+"Force and Laws of Motion",
+"Gravitation"
+],
+
+sst9:[
+"India and Contemporary World",
+"Contemporary India",
+"Democratic Politics",
+"Economics",
+"Geography"
+],
+
+english9:[
+"Reading",
+"Writing",
+"Grammar",
+"Literature",
+"Vocabulary"
+],
+
+hindi9:[
+"गद्य",
+"पद्य",
+"व्याकरण",
+"लेखन",
+"अपठित बोध"
+]
+
+};
+
+
+/* =========================
+   LOGIN
+========================= */
+
+function loginStudent(){
+
+let name =
+document.getElementById("studentName").value.trim();
+
+let email =
+document.getElementById("studentEmail").value.trim();
+
+
+if(name===""){
+
+document.getElementById("loginMessage")
+.innerText =
+"⚠️ अपना नाम लिखें।";
+
+return;
+
+}
+
+
+localStorage.setItem(
+"studentName",
+name
+);
+
+localStorage.setItem(
+"studentEmail",
+email
+);
+
+
+document.getElementById("loginMessage")
+.innerText =
+"✅ Login successful!";
+
+
+loadProfile();
+
+}
+
+
+/* =========================
+   LOAD PROFILE
+========================= */
+
+function loadProfile(){
+
+let name =
+localStorage.getItem("studentName");
+
+let email =
+localStorage.getItem("studentEmail");
+
+
+if(name){
+
+document.getElementById("profileName")
+.innerText=name;
+
+document.getElementById("profileEmail")
+.innerText=
+email || "Student";
+
+
+document.getElementById("avatar")
+.innerText=
+name.charAt(0).toUpperCase();
+
+}
+
+updateStats();
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logoutStudent(){
+
+localStorage.removeItem("studentName");
+
+localStorage.removeItem("studentEmail");
+
+document.getElementById("profileName")
+.innerText="Student";
+
+document.getElementById("profileEmail")
+.innerText=
+"Login करने के बाद profile दिखेगी।";
+
+document.getElementById("avatar")
+.innerText="S";
+
+}
+
+
+/* =========================
+   CLASS
+========================= */
+
+function showClass(className){
+
+document.getElementById("class8")
+.classList.add("hidden");
+
+document.getElementById("class9")
+.classList.add("hidden");
+
+document.getElementById(className)
+.classList.remove("hidden");
+
+document.getElementById(className)
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+/* =========================
+   CHAPTERS
+========================= */
+
+function openChapters(subject){
+
+let list =
+document.getElementById("chapterList");
+
+list.innerHTML="";
+
+
+chapters[subject].forEach(function(chapter){
+
+let div=
+document.createElement("div");
+
+div.className="chapter";
+
+div.innerHTML=`
+
+<b>📖 ${chapter}</b>
+
+<button onclick="studyChapter('${chapter}')">
+Study
+</button>
+
+<div class="clear"></div>
+
+`;
+
+list.appendChild(div);
+
+});
+
+
+document.getElementById("subjects")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+/* =========================
+   STUDY CHAPTER
+========================= */
+
+function studyChapter(chapter){
+
+let count =
+Number(
+localStorage.getItem("chapterCount") || 0
+);
+
+count++;
+
+localStorage.setItem(
+"chapterCount",
+count
+);
+
+updateStats();
+
+alert(
+"📖 " + chapter +
+"\n\nChapter open हो गया।\n\n" +
+"यहाँ आगे पूरा Notes और Questions जोड़े जाएंगे।"
+);
+
+}
+
+
+/* =========================
+   QUIZ
+========================= */
+
+const quizQuestion={
+question:"भारत की राजधानी क्या है?",
+options:[
+"Mumbai",
+"New Delhi",
+"Kolkata",
+"Chennai"
+],
+answer:1
+};
+
+
+function loadQuiz(){
+
+let options=
+document.getElementById("options");
+
+options.innerHTML="";
+
+
+quizQuestion.options.forEach(
+function(option,index){
+
+let label=
+document.createElement("label");
+
+label.className="option";
+
+label.innerHTML=`
+
+<input
+type="radio"
+name="quizAnswer"
+value="${index}">
+
+${option}
+
+`;
+
+options.appendChild(label);
+
+});
+
+
+document.getElementById("progressBar")
+.style.width="100%";
+
+}
+
+
+function submitQuiz(){
+
+let selected=
+document.querySelector(
+'input[name="quizAnswer"]:checked'
+);
+
+
+if(!selected){
+
+document.getElementById("quizResult")
+.innerText=
+"⚠️ पहले answer चुनें।";
+
+return;
+
+}
+
+
+let attempts=
+Number(
+localStorage.getItem("quizAttempts") || 0
+);
+
+attempts++;
+
+
+let correct=
+Number(selected.value) ===
+quizQuestion.answer;
+
+
+let points=
+Number(
+localStorage.getItem("totalPoints") || 0
+);
+
+
+let best=
+Number(
+localStorage.getItem("bestScore") || 0
+);
+
+
+if(correct){
+
+points++;
+
+best=Math.max(best,100);
+
+document.getElementById("quizResult")
+.innerText=
+"🎉 सही जवाब! Score: 100%";
+
+}else{
+
+best=Math.max(best,0);
+
+document.getElementById("quizResult")
+.innerText=
+"❌ गलत जवाब! सही उत्तर: New Delhi";
+
+}
+
+
+localStorage.setItem(
+"quizAttempts",
+attempts
+);
+
+localStorage.setItem(
+"totalPoints",
+points
+);
+
+localStorage.setItem(
+"bestScore",
+best
+);
+
+
+updateStats();
+
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+function updateStats(){
+
+document.getElementById("chapterCount")
+.innerText=
+localStorage.getItem("chapterCount") || 0;
+
+
+document.getElementById("quizAttempts")
+.innerText=
+localStorage.getItem("quizAttempts") || 0;
+
+
+document.getElementById("bestScore")
+.innerText=
+(localStorage.getItem("bestScore") || 0)
++"%";
+
+
+document.getElementById("totalPoints")
+.innerText=
+localStorage.getItem("totalPoints") || 0;
+
+}
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+function toggleDarkMode(){
+
+document.body.classList.toggle("dark");
+
+let dark=
+document.body.classList.contains("dark");
+
+localStorage.setItem(
+"darkMode",
+dark
+);
+
+}
+
+
+if(
+localStorage.getItem("darkMode")==="true"
+){
+
+document.body.classList.add("dark");
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function searchContent(){
+
+let value=
+document.getElementById("searchBox")
+.value.toLowerCase();
+
+
+let elements=
+document.querySelectorAll(
+".card,.chapter"
+);
+
+
+elements.forEach(function(element){
+
+let text=
+element.innerText.toLowerCase();
+
+
+if(
+value==="" ||
+text.includes(value)
+){
+
+element.style.display="block";
+
+}else{
+
+element.style.display="none";
+
+}
+
+});
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+loadProfile();
+
+loadQuiz();
+
+updateStats();
+
+</script>
+
+</body>
+<!-- ============================= -->
+<!-- STUDY NOTES SECTION - PART 1 -->
+<!-- ============================= -->
+
+<section id="notes-section">
+    <h2>Study Notes</h2>
+
+    <div class="notes-container">
+
+        <div class="note-card">
+            <h3>Class 8 - Mathematics</h3>
+            <p>Learn mathematics concepts chapter by chapter.</p>
+
+            <button onclick="showNote('math8-1')">
+                Open Chapter 1
+            </button>
+
+            <button onclick="showNote('math8-2')">
+                Open Chapter 2
+            </button>
+
+            <button onclick="showNote('math8-3')">
+                Open Chapter 3
+            </button>
+        </div>
+
+        <div class="note-card">
+            <h3>Class 8 - Science</h3>
+            <p>Study science topics with simple explanations.</p>
+
+            <button onclick="showNote('science8-1')">
+                Open Chapter 1
+            </button>
+
+            <button onclick="showNote('science8-2')">
+                Open Chapter 2
+            </button>
+
+            <button onclick="showNote('science8-3')">
+                Open Chapter 3
+            </button>
+        </div>
+
+        <div class="note-card">
+            <h3>Class 9 - Mathematics</h3>
+            <p>Practice important mathematics concepts.</p>
+
+            <button onclick="showNote('math9-1')">
+                Open Chapter 1
+            </button>
+
+            <button onclick="showNote('math9-2')">
+                Open Chapter 2
+            </button>
+
+            <button onclick="showNote('math9-3')">
+                Open Chapter 3
+            </button>
+        </div>
+
+        <div class="note-card">
+            <h3>Class 9 - Science</h3>
+            <p>Understand science with chapter wise notes.</p>
+
+            <button onclick="showNote('science9-1')">
+                Open Chapter 1
+            </button>
+
+            <button onclick="showNote('science9-2')">
+                Open Chapter 2
+            </button>
+
+            <button onclick="showNote('science9-3')">
+                Open Chapter 3
+            </button>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ============================= -->
+<!-- NOTES DISPLAY AREA -->
+<!-- ============================= -->
+
+<section id="note-display">
+
+    <h2>Chapter Notes</h2>
+
+    <div id="note-content">
+
+        <h3>Select a chapter</h3>
+
+        <p>
+            Select any chapter above to read its notes.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ============================= -->
+<!-- IMPORTANT QUESTIONS -->
+<!-- ============================= -->
+
+<section id="important-questions">
+
+    <h2>Important Questions</h2>
+
+    <div class="question-card">
+
+        <h3>Class 8 Mathematics</h3>
+
+        <p>
+            1. What is a rational number?
+        </p>
+
+        <p>
+            2. Explain the properties of rational numbers.
+        </p>
+
+        <p>
+            3. What is a linear equation?
+        </p>
+
+        <p>
+            4. Solve a simple linear equation.
+        </p>
+
+    </div>
+
+
+    <div class="question-card">
+
+        <h3>Class 8 Science</h3>
+
+        <p>
+            1. What is force?
+        </p>
+
+        <p>
+            2. What is friction?
+        </p>
+
+        <p>
+            3. Explain the different types of forces.
+        </p>
+
+        <p>
+            4. What is a microorganism?
+        </p>
+
+    </div>
+
+
+    <div class="question-card">
+
+        <h3>Class 9 Mathematics</h3>
+
+        <p>
+            1. What is a polynomial?
+        </p>
+
+        <p>
+            2. Define a linear equation in two variables.
+        </p>
+
+        <p>
+            3. What is coordinate geometry?
+        </p>
+
+        <p>
+            4. Explain the basic concepts of geometry.
+        </p>
+
+    </div>
+
+
+    <div class="question-card">
+
+        <h3>Class 9 Science</h3>
+
+        <p>
+            1. What is matter?
+        </p>
+
+        <p>
+            2. Explain the states of matter.
+        </p>
+
+        <p>
+            3. What is an atom?
+        </p>
+
+        <p>
+            4. What is a molecule?
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ============================= -->
+<!-- NOTES JAVASCRIPT -->
+<!-- ============================= -->
+
+<script>
+
+function showNote(chapter) {
+
+    var content = document.getElementById("note-content");
+
+    if (chapter === "math8-1") {
+
+        content.innerHTML =
+        "<h3>Class 8 Mathematics - Chapter 1</h3>" +
+        "<p>Rational numbers can be written in the form p divided by q, " +
+        "where p and q are integers and q is not zero.</p>" +
+        "<h4>Important Points</h4>" +
+        "<ul>" +
+        "<li>Numerator is the upper part.</li>" +
+        "<li>Denominator is the lower part.</li>" +
+        "<li>Denominator cannot be zero.</li>" +
+        "</ul>";
+
+    }
+
+    else if (chapter === "math8-2") {
+
+        content.innerHTML =
+        "<h3>Class 8 Mathematics - Chapter 2</h3>" +
+        "<p>Linear equations are mathematical statements containing an unknown value.</p>" +
+        "<h4>Example</h4>" +
+        "<p>x + 5 = 10</p>" +
+        "<p>Therefore x = 5.</p>";
+
+    }
+
+    else if (chapter === "math8-3") {
+
+        content.innerHTML =
+        "<h3>Class 8 Mathematics - Chapter 3</h3>" +
+        "<p>Understanding numbers and their properties is important for solving mathematical problems.</p>" +
+        "<h4>Practice</h4>" +
+        "<p>Try solving different number based problems.</p>";
+
+    }
+
+    else if (chapter === "science8-1") {
+
+        content.innerHTML =
+        "<h3>Class 8 Science - Chapter 1</h3>" +
+        "<p>Science helps us understand the natural world around us.</p>" +
+        "<h4>Important Topics</h4>" +
+        "<ul>" +
+        "<li>Natural resources</li>" +
+        "<li>Living organisms</li>" +
+        "<li>Environment</li>" +
+        "</ul>";
+
+    }
+
+    else if (chapter === "science8-2") {
+
+        content.innerHTML =
+        "<h3>Class 8 Science - Chapter 2</h3>" +
+        "<p>Microorganisms are very small living organisms.</p>" +
+        "<p>Some microorganisms are useful while others can cause diseases.</p>";
+
+    }
+
+    else if (chapter === "science8-3") {
+
+        content.innerHTML =
+        "<h3>Class 8 Science - Chapter 3</h3>" +
+        "<p>Force can change the motion or direction of an object.</p>" +
+        "<p>Friction is a force that opposes motion.</p>";
+
+    }
+
+    else if (chapter === "math9-1") {
+
+        content.innerHTML =
+        "<h3>Class 9 Mathematics - Chapter 1</h3>" +
+        "<p>Number systems describe different types of numbers.</p>" +
+        "<h4>Important Topics</h4>" +
+        "<ul>" +
+        "<li>Natural numbers</li>" +
+        "<li>Whole numbers</li>" +
+        "<li>Integers</li>" +
+        "<li>Rational numbers</li>" +
+        "<li>Irrational numbers</li>" +
+        "</ul>";
+
+    }
+
+    else if (chapter === "math9-2") {
+
+        content.innerHTML =
+        "<h3>Class 9 Mathematics - Chapter 2</h3>" +
+        "<p>Polynomials are algebraic expressions containing variables and constants.</p>" +
+        "<p>Examples include x + 2 and x squared + 3x + 2.</p>";
+
+    }
+
+    else if (chapter === "math9-3") {
+
+        content.innerHTML =
+        "<h3>Class 9 Mathematics - Chapter 3</h3>" +
+        "<p>Coordinate geometry connects algebra with geometry.</p>" +
+        "<p>Points can be represented using coordinates.</p>";
+
+    }
+
+    else if (chapter === "science9-1") {
+
+        content.innerHTML =
+        "<h3>Class 9 Science - Chapter 1</h3>" +
+        "<p>Matter is anything that has mass and occupies space.</p>" +
+        "<h4>States of Matter</h4>" +
+        "<ul>" +
+        "<li>Solid</li>" +
+        "<li>Liquid</li>" +
+        "<li>Gas</li>" +
+        "</ul>";
+
+    }
+
+    else if (chapter === "science9-2") {
+
+        content.innerHTML =
+        "<h3>Class 9 Science - Chapter 2</h3>" +
+        "<p>An atom is a basic unit of an element.</p>" +
+        "<p>Atoms contain particles such as protons, neutrons and electrons.</p>";
+
+    }
+
+    else if (chapter === "science9-3") {
+
+        content.innerHTML =
+        "<h3>Class 9 Science - Chapter 3</h3>" +
+        "<p>Scientific concepts can be understood through observations and experiments.</p>" +
+        "<p>Always follow proper safety rules during experiments.</p>";
+
+    }
+
+}
+
+</script>
+
+
+<!-- ============================= -->
+<!-- END OF PART 1 -->
+<!-- ============================= -->
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Study Point</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    color:#222;
+    transition:.3s;
+}
+
+body.dark{
+    background:#111827;
+    color:#eee;
+}
+
+header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+}
+
+header h1{
+    font-size:34px;
+    margin-bottom:8px;
+}
+
+nav{
+    background:white;
+    padding:14px;
+    text-align:center;
+    box-shadow:0 2px 10px #ddd;
+    position:sticky;
+    top:0;
+    z-index:20;
+}
+
+.dark nav{
+    background:#1f2937;
+}
+
+nav a{
+    color:#2563eb;
+    text-decoration:none;
+    font-weight:bold;
+    margin:5px 8px;
+    display:inline-block;
+}
+
+.dark nav a{
+    color:#93c5fd;
+}
+
+button{
+    background:#2563eb;
+    color:white;
+    border:0;
+    padding:11px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.hero{
+    text-align:center;
+    padding:40px 15px;
+}
+
+.hero h2{
+    font-size:30px;
+    margin-bottom:12px;
+}
+
+.search{
+    max-width:600px;
+    margin:20px auto;
+}
+
+.search input{
+    width:100%;
+    padding:14px;
+    border:2px solid #2563eb;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.section{
+    max-width:1100px;
+    margin:auto;
+    padding:30px 15px;
+}
+
+.section h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:14px;
+    box-shadow:0 3px 12px #ddd;
+    text-align:center;
+}
+
+.dark .card,
+.dark .dashboard,
+.dark .login-box{
+    background:#1f2937;
+    box-shadow:0 3px 12px #000;
+}
+
+.card h3{
+    color:#2563eb;
+    margin-bottom:12px;
+}
+
+.card p{
+    line-height:1.6;
+    margin-bottom:15px;
+}
+
+.hidden{
+    display:none;
+}
+
+.dashboard{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 3px 12px #ddd;
+}
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.avatar{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:#2563eb;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    font-weight:bold;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(150px,1fr));
+    gap:15px;
+    margin-top:20px;
+}
+
+.stat{
+    background:#f1f5f9;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+}
+
+.dark .stat{
+    background:#374151;
+}
+
+.stat strong{
+    display:block;
+    font-size:28px;
+    color:#2563eb;
+    margin-top:8px;
+}
+
+.login-box{
+    max-width:450px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 3px 12px #ddd;
+}
+
+.login-box input{
+    width:100%;
+    padding:13px;
+    margin:8px 0 15px;
+    border:1px solid #bbb;
+    border-radius:8px;
+}
+
+.chapter{
+    background:white;
+    padding:18px;
+    margin:10px auto;
+    max-width:750px;
+    border-radius:10px;
+    box-shadow:0 2px 8px #ddd;
+}
+
+.dark .chapter{
+    background:#1f2937;
+}
+
+.chapter button{
+    float:right;
+}
+
+.clear{
+    clear:both;
+}
+
+.quiz-box{
+    max-width:750px;
+    margin:auto;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 3px 12px #ddd;
+}
+
+.dark .quiz-box{
+    background:#1f2937;
+}
+
+.option{
+    display:block;
+    padding:14px;
+    margin:10px 0;
+    background:#f1f5f9;
+    border-radius:8px;
+}
+
+.dark .option{
+    background:#374151;
+}
+
+.progress{
+    width:100%;
+    height:12px;
+    background:#e5e7eb;
+    border-radius:20px;
+    overflow:hidden;
+    margin:15px 0 25px;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:#2563eb;
+    transition:.3s;
+}
+
+footer{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:30px;
+    margin-top:40px;
+}
+
+@media(max-width:600px){
+
+    header h1{
+        font-size:27px;
+    }
+
+    .hero h2{
+        font-size:24px;
+    }
+
+    .profile{
+        flex-direction:column;
+        text-align:center;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>📚 Study Point</h1>
+
+<p>
+Class 8 & Class 9 Online Study
+</p>
+
+</header>
+
+
+<nav>
+
+<a href="#home">Home</a>
+<a href="#classes">Classes</a>
+<a href="#dashboard">Dashboard</a>
+<a href="#quiz">Quiz</a>
+<a href="#login">Login</a>
+
+<br><br>
+
+<button onclick="toggleDarkMode()">
+🌙 Dark Mode
+</button>
+
+</nav>
+
+
+<!-- HOME -->
+
+<section class="hero" id="home">
+
+<h2>
+🎓 पढ़ाई अब आसान बनाएं
+</h2>
+
+<p>
+Notes • Questions • Quiz • Progress
+</p>
+
+<div class="search">
+
+<input
+type="text"
+id="searchBox"
+placeholder="🔍 Subject या Chapter खोजें..."
+onkeyup="searchContent()">
+
+</div>
+
+</section>
+
+
+<!-- LOGIN -->
+
+<section class="section" id="login">
+
+<h2>🔐 Student Login</h2>
+
+<div class="login-box">
+
+<label>
+Student Name
+</label>
+
+<input
+type="text"
+id="studentName"
+placeholder="अपना नाम लिखें">
+
+
+<label>
+Email
+</label>
+
+<input
+type="email"
+id="studentEmail"
+placeholder="Email लिखें">
+
+
+<button onclick="loginStudent()">
+Login / Continue
+</button>
+
+<p
+id="loginMessage"
+style="margin-top:15px;">
+</p>
+
+</div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+
+<section class="section" id="dashboard">
+
+<h2>📊 Student Dashboard</h2>
+
+<div class="dashboard">
+
+<div class="profile">
+
+<div class="avatar" id="avatar">
+S
+</div>
+
+<div>
+
+<h2 id="profileName">
+Student
+</h2>
+
+<p id="profileEmail">
+Login करने के बाद profile दिखेगी।
+</p>
+
+</div>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+
+📚
+<p>Chapters Studied</p>
+
+<strong id="chapterCount">
+0
+</strong>
+
+</div>
+
+
+<div class="stat">
+
+🧠
+<p>Quiz Attempts</p>
+
+<strong id="quizAttempts">
+0
+</strong>
+
+</div>
+
+
+<div class="stat">
+
+🏆
+<p>Best Score</p>
+
+<strong id="bestScore">
+0%
+</strong>
+
+</div>
+
+
+<div class="stat">
+
+⭐
+<p>Total Points</p>
+
+<strong id="totalPoints">
+0
+</strong>
+
+</div>
+
+</div>
+
+<br>
+
+<button onclick="logoutStudent()">
+Logout
+</button>
+
+</div>
+
+</section>
+
+
+<!-- CLASSES -->
+
+<section class="section" id="classes">
+
+<h2>📖 Classes</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>📘 Class 8</h3>
+
+<p>
+Class 8 Study Material
+</p>
+
+<button onclick="showClass('class8')">
+Open
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h3>📕 Class 9</h3>
+
+<p>
+Class 9 Study Material
+</p>
+
+<button onclick="showClass('class9')">
+Open
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CLASS 8 -->
+
+<section class="section hidden" id="class8">
+
+<h2>📘 Class 8 Subjects</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>🔢 Mathematics</h3>
+<p>Maths Chapters</p>
+<button onclick="openChapters('math8')">
+Chapters
+</button>
+</div>
+
+<div class="card">
+<h3>🔬 Science</h3>
+<p>Science Chapters</p>
+<button onclick="openChapters('science8')">
+Chapters
+</button>
+</div>
+
+<div class="card">
+<h3>🌍 Social Science</h3>
+<p>History • Geography • Civics</p>
+<button onclick="openChapters('sst8')">
+Chapters
+</button>
+</div>
+
+<div class="card">
+<h3>📖 English</h3>
+<p>Grammar • Literature</p>
+<button onclick="openChapters('english8')">
+Chapters
+</button>
+</div>
+
+<div class="card">
+<h3>📝 Hindi</h3>
+<p>Grammar • Literature</p>
+<button onclick="openChapters('hindi8')">
+Chapters
+</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CLASS 9 -->
+
+<section class="section hidden" id="class9">
+
+<h2>📕 Class 9 Subjects</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>🔢 Mathematics</h3>
+<p>Maths Chapters</p>
+<button onclick="openChapters('math9')">
+Chapters
+</button>
+</div>
+
+<div class="card">
+<h3>🔬 Science</h3>
+<p>Science Chapters</p>
+<button onclick="openChapters('science9')">
+Chapters
+</button>
+</div>
+
+<div class="card">
+<h3>🌍 Social Science</h3>
+<p>History • Geography • Civics</p>
+<button onclick="openChapters('sst9')">
+Chapters
+</button>
+</div>
+
+<div class="card">
+<h3>📖 English</h3>
+<p>Grammar • Literature</p>
+<button onclick="openChapters('english9')">
+Chapters
+</button>
+</div>
+
+<div class="card">
+<h3>📝 Hindi</h3>
+<p>Grammar • Literature</p>
+<button onclick="openChapters('hindi9')">
+Chapters
+</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CHAPTERS -->
+
+<section class="section" id="subjects">
+
+<h2>📚 Chapters</h2>
+
+<div id="chapterList">
+
+<p style="text-align:center">
+पहले कोई subject चुनें।
+</p>
+
+</div>
+
+</section>
+
+
+<!-- QUIZ -->
+
+<section class="section" id="quiz">
+
+<h2>🧠 Online Quiz</h2>
+
+<div class="quiz-box">
+
+<h3 id="questionText">
+भारत की राजधानी क्या है?
+</h3>
+
+<div class="progress">
+
+<div
+id="progressBar"
+class="progress-bar">
+</div>
+
+</div>
+
+<div id="options"></div>
+
+<br>
+
+<button onclick="submitQuiz()">
+Submit Answer
+</button>
+
+<p
+id="quizResult"
+style="margin-top:20px;text-align:center;">
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="section">
+
+<h2>ℹ️ About Study Point</h2>
+
+<div class="card">
+
+<p>
+Study Point students के लिए Notes,
+Questions, Quiz और Progress Tracking
+की सुविधा देने वाली educational website है।
+</p>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<p>
+© 2026 Study Point
+</p>
+
+<p>
+Made for Students ❤️
+</p>
+
+</footer>
+
+
+
+<script>
+
+
+/* =========================
+   CHAPTER DATA
+========================= */
+
+const chapters={
+
+math8:[
+"Rational Numbers",
+"Linear Equations",
+"Understanding Quadrilaterals",
+"Practical Geometry",
+"Data Handling",
+"Squares and Square Roots"
+],
+
+science8:[
+"Crop Production",
+"Microorganisms",
+"Coal and Petroleum",
+"Combustion and Flame",
+"Conservation of Plants",
+"Reproduction in Animals"
+],
+
+sst8:[
+"History",
+"Geography",
+"Civics",
+"Resources",
+"Agriculture",
+"Industries"
+],
+
+english8:[
+"Grammar",
+"Reading",
+"Writing",
+"Literature",
+"Vocabulary"
+],
+
+hindi8:[
+"गद्य",
+"पद्य",
+"व्याकरण",
+"लेखन",
+"अपठित बोध"
+],
+
+math9:[
+"Number Systems",
+"Polynomials",
+"Coordinate Geometry",
+"Linear Equations",
+"Euclid's Geometry",
+"Lines and Angles",
+"Triangles"
+],
+
+science9:[
+"Matter",
+"Fundamental Unit of Life",
+"Tissues",
+"Motion",
+"Force and Laws of Motion",
+"Gravitation"
+],
+
+sst9:[
+"India and Contemporary World",
+"Contemporary India",
+"Democratic Politics",
+"Economics",
+"Geography"
+],
+
+english9:[
+"Reading",
+"Writing",
+"Grammar",
+"Literature",
+"Vocabulary"
+],
+
+hindi9:[
+"गद्य",
+"पद्य",
+"व्याकरण",
+"लेखन",
+"अपठित बोध"
+]
+
+};
+
+
+/* =========================
+   LOGIN
+========================= */
+
+function loginStudent(){
+
+let name =
+document.getElementById("studentName").value.trim();
+
+let email =
+document.getElementById("studentEmail").value.trim();
+
+
+if(name===""){
+
+document.getElementById("loginMessage")
+.innerText =
+"⚠️ अपना नाम लिखें।";
+
+return;
+
+}
+
+
+localStorage.setItem(
+"studentName",
+name
+);
+
+localStorage.setItem(
+"studentEmail",
+email
+);
+
+
+document.getElementById("loginMessage")
+.innerText =
+"✅ Login successful!";
+
+
+loadProfile();
+
+}
+
+
+/* =========================
+   LOAD PROFILE
+========================= */
+
+function loadProfile(){
+
+let name =
+localStorage.getItem("studentName");
+
+let email =
+localStorage.getItem("studentEmail");
+
+
+if(name){
+
+document.getElementById("profileName")
+.innerText=name;
+
+document.getElementById("profileEmail")
+.innerText=
+email || "Student";
+
+
+document.getElementById("avatar")
+.innerText=
+name.charAt(0).toUpperCase();
+
+}
+
+updateStats();
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logoutStudent(){
+
+localStorage.removeItem("studentName");
+
+localStorage.removeItem("studentEmail");
+
+document.getElementById("profileName")
+.innerText="Student";
+
+document.getElementById("profileEmail")
+.innerText=
+"Login करने के बाद profile दिखेगी।";
+
+document.getElementById("avatar")
+.innerText="S";
+
+}
+
+
+/* =========================
+   CLASS
+========================= */
+
+function showClass(className){
+
+document.getElementById("class8")
+.classList.add("hidden");
+
+document.getElementById("class9")
+.classList.add("hidden");
+
+document.getElementById(className)
+.classList.remove("hidden");
+
+document.getElementById(className)
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+/* =========================
+   CHAPTERS
+========================= */
+
+function openChapters(subject){
+
+let list =
+document.getElementById("chapterList");
+
+list.innerHTML="";
+
+
+chapters[subject].forEach(function(chapter){
+
+let div=
+document.createElement("div");
+
+div.className="chapter";
+
+div.innerHTML=`
+
+<b>📖 ${chapter}</b>
+
+<button onclick="studyChapter('${chapter}')">
+Study
+</button>
+
+<div class="clear"></div>
+
+`;
+
+list.appendChild(div);
+
+});
+
+
+document.getElementById("subjects")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+/* =========================
+   STUDY CHAPTER
+========================= */
+
+function studyChapter(chapter){
+
+let count =
+Number(
+localStorage.getItem("chapterCount") || 0
+);
+
+count++;
+
+localStorage.setItem(
+"chapterCount",
+count
+);
+
+updateStats();
+
+alert(
+"📖 " + chapter +
+"\n\nChapter open हो गया।\n\n" +
+"यहाँ आगे पूरा Notes और Questions जोड़े जाएंगे।"
+);
+
+}
+
+
+/* =========================
+   QUIZ
+========================= */
+
+const quizQuestion={
+question:"भारत की राजधानी क्या है?",
+options:[
+"Mumbai",
+"New Delhi",
+"Kolkata",
+"Chennai"
+],
+answer:1
+};
+
+
+function loadQuiz(){
+
+let options=
+document.getElementById("options");
+
+options.innerHTML="";
+
+
+quizQuestion.options.forEach(
+function(option,index){
+
+let label=
+document.createElement("label");
+
+label.className="option";
+
+label.innerHTML=`
+
+<input
+type="radio"
+name="quizAnswer"
+value="${index}">
+
+${option}
+
+`;
+
+options.appendChild(label);
+
+});
+
+
+document.getElementById("progressBar")
+.style.width="100%";
+
+}
+
+
+function submitQuiz(){
+
+let selected=
+document.querySelector(
+'input[name="quizAnswer"]:checked'
+);
+
+
+if(!selected){
+
+document.getElementById("quizResult")
+.innerText=
+"⚠️ पहले answer चुनें।";
+
+return;
+
+}
+
+
+let attempts=
+Number(
+localStorage.getItem("quizAttempts") || 0
+);
+
+attempts++;
+
+
+let correct=
+Number(selected.value) ===
+quizQuestion.answer;
+
+
+let points=
+Number(
+localStorage.getItem("totalPoints") || 0
+);
+
+
+let best=
+Number(
+localStorage.getItem("bestScore") || 0
+);
+
+
+if(correct){
+
+points++;
+
+best=Math.max(best,100);
+
+document.getElementById("quizResult")
+.innerText=
+"🎉 सही जवाब! Score: 100%";
+
+}else{
+
+best=Math.max(best,0);
+
+document.getElementById("quizResult")
+.innerText=
+"❌ गलत जवाब! सही उत्तर: New Delhi";
+
+}
+
+
+localStorage.setItem(
+"quizAttempts",
+attempts
+);
+
+localStorage.setItem(
+"totalPoints",
+points
+);
+
+localStorage.setItem(
+"bestScore",
+best
+);
+
+
+updateStats();
+
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+function updateStats(){
+
+document.getElementById("chapterCount")
+.innerText=
+localStorage.getItem("chapterCount") || 0;
+
+
+document.getElementById("quizAttempts")
+.innerText=
+localStorage.getItem("quizAttempts") || 0;
+
+
+document.getElementById("bestScore")
+.innerText=
+(localStorage.getItem("bestScore") || 0)
++"%";
+
+
+document.getElementById("totalPoints")
+.innerText=
+localStorage.getItem("totalPoints") || 0;
+
+}
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+function toggleDarkMode(){
+
+document.body.classList.toggle("dark");
+
+let dark=
+document.body.classList.contains("dark");
+
+localStorage.setItem(
+"darkMode",
+dark
+);
+
+}
+
+
+if(
+localStorage.getItem("darkMode")==="true"
+){
+
+document.body.classList.add("dark");
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function searchContent(){
+
+let value=
+document.getElementById("searchBox")
+.value.toLowerCase();
+
+
+let elements=
+document.querySelectorAll(
+".card,.chapter"
+);
+
+
+elements.forEach(function(element){
+
+let text=
+element.innerText.toLowerCase();
+
+
+if(
+value==="" ||
+text.includes(value)
+){
+
+element.style.display="block";
+
+}else{
+
+element.style.display="none";
+
+}
+
+});
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+loadProfile();
+
+loadQuiz();
+
+updateStats();
+
+</script>
+
+</body>
+<!-- ====================================== -->
+<!-- STUDY POINT - PART 3 -->
+<!-- TIMER AND RESULT SYSTEM -->
+<!-- ASCII ONLY -->
+<!-- ====================================== -->
+
+<section id="advanced-quiz">
+
+    <h2>Advanced Quiz System</h2>
+
+    <div id="timer-box">
+        Time Left:
+        <span id="quiz-timer">60</span>
+        seconds
+    </div>
+
+    <div id="marks-box">
+        Marks:
+        <span id="live-marks">0</span>
+    </div>
+
+    <div id="review-area">
+
+        <h2>Answer Review</h2>
+
+        <div id="review-content">
+            Your answer review will appear here.
+        </div>
+
+    </div>
+
+    <div id="grade-area">
+
+        <h2>Performance Report</h2>
+
+        <p id="grade-text">
+            Complete a quiz to see your performance.
+        </p>
+
+        <p id="percentage-text"></p>
+
+        <p id="correct-text"></p>
+
+        <p id="wrong-text"></p>
+
+        <p id="unanswered-text"></p>
+
+    </div>
+
+</section>
+
+
+<!-- ====================================== -->
+<!-- QUIZ TIMER CSS -->
+<!-- ====================================== -->
+
+<style>
+
+#advanced-quiz {
+    padding: 30px;
+    margin-top: 30px;
+}
+
+#timer-box {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    border: 1px solid #cccccc;
+}
+
+#quiz-timer {
+    font-size: 22px;
+}
+
+#marks-box {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    border: 1px solid #cccccc;
+}
+
+#live-marks {
+    font-size: 22px;
+}
+
+#review-area {
+    margin-top: 30px;
+    padding: 20px;
+}
+
+.review-question {
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #cccccc;
+}
+
+.correct-answer {
+    font-weight: bold;
+}
+
+.wrong-answer {
+    font-weight: bold;
+}
+
+.unanswered-answer {
+    font-weight: bold;
+}
+
+#grade-area {
+    margin-top: 30px;
+    padding: 25px;
+    text-align: center;
+}
+
+#grade-text {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+</style>
+
+
+<!-- ====================================== -->
+<!-- TIMER JAVASCRIPT -->
+<!-- ====================================== -->
+
+<script>
+
+var advancedTimer = null;
+
+var advancedTime = 60;
+
+var advancedQuizRunning = false;
+
+
+function startAdvancedTimer() {
+
+    clearInterval(advancedTimer);
+
+    advancedTime = 60;
+
+    advancedQuizRunning = true;
+
+    document.getElementById("quiz-timer").innerHTML =
+        advancedTime;
+
+    advancedTimer = setInterval(function() {
+
+        if (!advancedQuizRunning) {
+
+            clearInterval(advancedTimer);
+
+            return;
+
+        }
+
+        advancedTime--;
+
+        document.getElementById("quiz-timer").innerHTML =
+            advancedTime;
+
+        if (advancedTime <= 0) {
+
+            clearInterval(advancedTimer);
+
+            advancedQuizRunning = false;
+
+            if (typeof finishQuiz === "function") {
+
+                finishQuiz();
+
+            }
+
+        }
+
+    }, 1000);
+
+}
+
+
+function stopAdvancedTimer() {
+
+    advancedQuizRunning = false;
+
+    clearInterval(advancedTimer);
+
+}
+
+
+function resetAdvancedTimer() {
+
+    stopAdvancedTimer();
+
+    advancedTime = 60;
+
+    document.getElementById("quiz-timer").innerHTML =
+        advancedTime;
+
+}
+
+
+</script>
+
+
+<!-- ====================================== -->
+<!-- CONNECT TIMER WITH QUIZ -->
+<!-- ====================================== -->
+
+<script>
+
+var oldStartQuiz = startQuiz;
+
+startQuiz = function(type) {
+
+    oldStartQuiz(type);
+
+    resetAdvancedTimer();
+
+    startAdvancedTimer();
+
+    document.getElementById("review-area").style.display =
+        "none";
+
+    document.getElementById("grade-area").style.display =
+        "none";
+
+    document.getElementById("live-marks").innerHTML =
+        "0";
+
+};
+
+
+var oldSelectAnswer = selectAnswer;
+
+selectAnswer = function(answer) {
+
+    oldSelectAnswer(answer);
+
+    updateLiveMarks();
+
+};
+
+
+function updateLiveMarks() {
+
+    if (!currentQuiz) {
+
+        return;
+
+    }
+
+    var marks = 0;
+
+    for (
+        var i = 0;
+        i < currentQuiz.questions.length;
+        i++
+    ) {
+
+        if (
+            userAnswers[i] ===
+            currentQuiz.questions[i].answer
+        ) {
+
+            marks++;
+
+        }
+
+    }
+
+    document.getElementById("live-marks").innerHTML =
+        marks;
+
+}
+
+
+var oldFinishQuiz = finishQuiz;
+
+finishQuiz = function() {
+
+    stopAdvancedTimer();
+
+    oldFinishQuiz();
+
+    createAnswerReview();
+
+    createPerformanceReport();
+
+};
+
+
+var oldRestartQuiz = restartQuiz;
+
+restartQuiz = function() {
+
+    oldRestartQuiz();
+
+    resetAdvancedTimer();
+
+    startAdvancedTimer();
+
+    document.getElementById("review-area").style.display =
+        "none";
+
+    document.getElementById("grade-area").style.display =
+        "none";
+
+    document.getElementById("live-marks").innerHTML =
+        "0";
+
+};
+
+
+</script>
+
+
+<!-- ====================================== -->
+<!-- ANSWER REVIEW SYSTEM -->
+<!-- ====================================== -->
+
+<script>
+
+function createAnswerReview() {
+
+    if (!currentQuiz) {
+
+        return;
+
+    }
+
+    var review = "";
+
+    var correct = 0;
+
+    var wrong = 0;
+
+    var unanswered = 0;
+
+
+    for (
+        var i = 0;
+        i < currentQuiz.questions.length;
+        i++
+    ) {
+
+        var question =
+            currentQuiz.questions[i];
+
+        var userAnswer =
+            userAnswers[i];
+
+
+        review +=
+            "<div class='review-question'>";
+
+
+        review +=
+            "<h3>Question " +
+            (i + 1) +
+            "</h3>";
+
+
+        review +=
+            "<p>" +
+            question.question +
+            "</p>";
+
+
+        if (userAnswer === -1) {
+
+            unanswered++;
+
+            review +=
+                "<p class='unanswered-answer'>" +
+                "Status: Not Answered" +
+                "</p>";
+
+        }
+
+        else if (
+            userAnswer === question.answer
+        ) {
+
+            correct++;
+
+            review +=
+                "<p class='correct-answer'>" +
+                "Status: Correct" +
+                "</p>";
+
+        }
+
+        else {
+
+            wrong++;
+
+            review +=
+                "<p class='wrong-answer'>" +
+                "Status: Wrong" +
+                "</p>";
+
+        }
+
+
+        review +=
+            "<p>Your Answer: ";
+
+
+        if (userAnswer === -1) {
+
+            review +=
+                "Not Answered";
+
+        }
+
+        else {
+
+            review +=
+                question.options[userAnswer];
+
+        }
+
+
+        review +=
+            "</p>";
+
+
+        review +=
+            "<p>Correct Answer: " +
+            question.options[question.answer] +
+            "</p>";
+
+
+        review +=
+            "</div>";
+
+    }
+
+
+    document.getElementById("review-content").innerHTML =
+        review;
+
+    document.getElementById("review-area").style.display =
+        "block";
+
+
+    return {
+
+        correct: correct,
+
+        wrong: wrong,
+
+        unanswered: unanswered
+
+    };
+
+}
+
+
+<!-- ====================================== -->
+<!-- PERFORMANCE REPORT -->
+<!-- ====================================== -->
+
+function createPerformanceReport() {
+
+    if (!currentQuiz) {
+
+        return;
+
+    }
+
+    var correct = 0;
+
+    var wrong = 0;
+
+    var unanswered = 0;
+
+
+    for (
+        var i = 0;
+        i < currentQuiz.questions.length;
+        i++
+    ) {
+
+        if (userAnswers[i] === -1) {
+
+            unanswered++;
+
+        }
+
+        else if (
+            userAnswers[i] ===
+            currentQuiz.questions[i].answer
+        ) {
+
+            correct++;
+
+        }
+
+        else {
+
+            wrong++;
+
+        }
+
+    }
+
+
+    var total =
+        currentQuiz.questions.length;
+
+
+    var percentage =
+        (correct / total) * 100;
+
+
+    var grade = "";
+
+
+    if (percentage >= 90) {
+
+        grade = "A+";
+
+    }
+
+    else if (percentage >= 80) {
+
+        grade = "A";
+
+    }
+
+    else if (percentage >= 70) {
+
+        grade = "B+";
+
+    }
+
+    else if (percentage >= 60) {
+
+        grade = "B";
+
+    }
+
+    else if (percentage >= 50) {
+
+        grade = "C";
+
+    }
+
+    else if (percentage >= 40) {
+
+        grade = "D";
+
+    }
+
+    else {
+
+        grade = "Needs Practice";
+
+    }
+
+
+    document.getElementById("grade-text").innerHTML =
+        "Grade: " + grade;
+
+
+    document.getElementById("percentage-text").innerHTML =
+        "Percentage: " +
+        percentage.toFixed(2) +
+        "%";
+
+
+    document.getElementById("correct-text").innerHTML =
+        "Correct Answers: " +
+        correct;
+
+
+    document.getElementById("wrong-text").innerHTML =
+        "Wrong Answers: " +
+        wrong;
+
+
+    document.getElementById("unanswered-text").innerHTML =
+        "Unanswered: " +
+        unanswered;
+
+
+    document.getElementById("grade-area").style.display =
+        "block";
+
+
+    saveAdvancedResult(
+        correct,
+        wrong,
+        unanswered,
+        percentage,
+        grade
+    );
+
+}
+
+
+<!-- ====================================== -->
+<!-- SAVE ADVANCED RESULT -->
+<!-- ====================================== -->
+
+function saveAdvancedResult(
+    correct,
+    wrong,
+    unanswered,
+    percentage,
+    grade
+) {
+
+    var history =
+        localStorage.getItem("quizHistory");
+
+
+    var historyData = [];
+
+
+    if (history) {
+
+        try {
+
+            historyData =
+                JSON.parse(history);
+
+        }
+
+        catch (error) {
+
+            historyData = [];
+
+        }
+
+    }
+
+
+    historyData.push({
+
+        date: new Date().toLocaleString(),
+
+        quiz: currentQuiz.title,
+
+        correct: correct,
+
+        wrong: wrong,
+
+        unanswered: unanswered,
+
+        percentage: percentage,
+
+        grade: grade
+
+    });
+
+
+    localStorage.setItem(
+        "quizHistory",
+        JSON.stringify(historyData)
+    );
+
+}
+
+
+</script>
+
+
+<!-- ====================================== -->
+<!-- QUIZ HISTORY -->
+<!-- ====================================== -->
+
+<section id="quiz-history">
+
+    <h2>My Quiz History</h2>
+
+    <button onclick="showQuizHistory()">
+        Show My History
+    </button>
+
+    <button onclick="clearQuizHistory()">
+        Clear History
+    </button>
+
+    <div id="history-content">
+
+        Quiz history will appear here.
+
+    </div>
+
+</section>
+
+
+<style>
+
+#quiz-history {
+    padding: 30px;
+    margin-top: 30px;
+}
+
+#quiz-history button {
+    padding: 12px 18px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.history-item {
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #cccccc;
+}
+
+</style>
+
+
+<script>
+
+function showQuizHistory() {
+
+    var history =
+        localStorage.getItem("quizHistory");
+
+
+    if (!history) {
+
+        document.getElementById(
+            "history-content"
+        ).innerHTML =
+            "<p>No quiz history found.</p>";
+
+        return;
+
+    }
+
+
+    var data;
+
+
+    try {
+
+        data = JSON.parse(history);
+
+    }
+
+    catch (error) {
+
+        document.getElementById(
+            "history-content"
+        ).innerHTML =
+            "<p>Unable to read quiz history.</p>";
+
+        return;
+
+    }
+
+
+    var html = "";
+
+
+    if (data.length === 0) {
+
+        html =
+            "<p>No quiz history found.</p>";
+
+    }
+
+
+    for (
+        var i = data.length - 1;
+        i >= 0;
+        i--
+    ) {
+
+        html +=
+            "<div class='history-item'>";
+
+        html +=
+            "<h3>" +
+            data[i].quiz +
+            "</h3>";
+
+        html +=
+            "<p>Date: " +
+            data[i].date +
+            "</p>";
+
+        html +=
+            "<p>Correct: " +
+            data[i].correct +
+            "</p>";
+
+        html +=
+            "<p>Wrong: " +
+            data[i].wrong +
+            "</p>";
+
+        html +=
+            "<p>Unanswered: " +
+            data[i].unanswered +
+            "</p>";
+
+        html +=
+            "<p>Percentage: " +
+            data[i].percentage.toFixed(2) +
+            "%</p>";
+
+        html +=
+            "<p>Grade: " +
+            data[i].grade +
+            "</p>";
+
+        html +=
+            "</div>";
+
+    }
+
+
+    document.getElementById(
+        "history-content"
+    ).innerHTML = html;
+
+}
+
+
+function clearQuizHistory() {
+
+    localStorage.removeItem(
+        "quizHistory"
+    );
+
+    document.getElementById(
+        "history-content"
+    ).innerHTML =
+        "<p>Quiz history cleared.</p>";
+
+}
+
+</script>
+
+
+<!-- ====================================== -->
+<!-- PART 3 END -->
+<!-- ====================================== -->
+<!-- ====================================== -->
+<!-- STUDY POINT - PART 4 -->
+<!-- QUESTION BANK SYSTEM -->
+<!-- ASCII ONLY -->
+<!-- ====================================== -->
+
+<section id="question-bank">
+
+    <h2>Question Bank</h2>
+
+    <p>
+        Choose your class, subject and quiz size.
+    </p>
+
+    <div class="bank-controls">
+
+        <label for="bank-class">
+            Class
+        </label>
+
+        <select id="bank-class" onchange="loadBankSubjects()">
+
+            <option value="8">
+                Class 8
+            </option>
+
+            <option value="9">
+                Class 9
+            </option>
+
+        </select>
+
+
+        <label for="bank-subject">
+            Subject
+        </label>
+
+        <select id="bank-subject">
+
+            <option value="math">
+                Mathematics
+            </option>
+
+            <option value="science">
+                Science
+            </option>
+
+        </select>
+
+
+        <label for="bank-size">
+            Questions
+        </label>
+
+        <select id="bank-size">
+
+            <option value="10">
+                10 Questions
+            </option>
+
+            <option value="20">
+                20 Questions
+            </option>
+
+            <option value="30">
+                30 Questions
+            </option>
+
+        </select>
+
+
+        <button onclick="startRandomBankQuiz()">
+            Start Random Quiz
+        </button>
+
+    </div>
+
+
+    <div id="bank-status">
+
+        Question Bank Ready
+
+    </div>
+
+</section>
+
+
+<!-- ====================================== -->
+<!-- QUESTION BANK STYLE -->
+<!-- ====================================== -->
+
+<style>
+
+#question-bank {
+    padding: 30px;
+    margin-top: 30px;
+}
+
+.bank-controls {
+    padding: 20px;
+    border: 1px solid #cccccc;
+}
+
+.bank-controls label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+.bank-controls select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+}
+
+.bank-controls button {
+    margin-top: 20px;
+    padding: 14px 22px;
+    cursor: pointer;
+}
+
+#bank-status {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #cccccc;
+    font-weight: bold;
+}
+
+</style>
+
+
+<!-- ====================================== -->
+<!-- EXTRA QUESTION BANK -->
+<!-- ====================================== -->
+
+<script>
+
+var extraQuestionBank = {
+
+    class8math: [
+
+        {
+            question: "What is 25 + 35?",
+            options: ["50", "60", "70", "80"],
+            answer: 1
+        },
+
+        {
+            question: "What is 90 - 45?",
+            options: ["35", "40", "45", "50"],
+            answer: 2
+        },
+
+        {
+            question: "What is 8 x 7?",
+            options: ["48", "54", "56", "64"],
+            answer: 2
+        },
+
+        {
+            question: "What is 72 divided by 8?",
+            options: ["7", "8", "9", "10"],
+            answer: 2
+        },
+
+        {
+            question: "What is the square of 6?",
+            options: ["12", "24", "36", "42"],
+            answer: 2
+        },
+
+        {
+            question: "What is the cube of 3?",
+            options: ["9", "18", "27", "36"],
+            answer: 2
+        },
+
+        {
+            question: "Which number is even?",
+            options: ["13", "17", "22", "29"],
+            answer: 2
+        },
+
+        {
+            question: "Which number is prime?",
+            options: ["9", "15", "17", "21"],
+            answer: 2
+        },
+
+        {
+            question: "What is 1/2 + 1/2?",
+            options: ["0", "1", "2", "3"],
+            answer: 1
+        },
+
+        {
+            question: "What is 3/4 of 20?",
+            options: ["10", "12", "15", "18"],
+            answer: 2
+        },
+
+        {
+            question: "What is 10 percent of 100?",
+            options: ["5", "10", "20", "25"],
+            answer: 1
+        },
+
+        {
+            question: "How many sides does a triangle have?",
+            options: ["2", "3", "4", "5"],
+            answer: 1
+        },
+
+        {
+            question: "How many sides does a square have?",
+            options: ["3", "4", "5", "6"],
+            answer: 1
+        },
+
+        {
+            question: "How many degrees are in a right angle?",
+            options: ["45", "90", "180", "360"],
+            answer: 1
+        },
+
+        {
+            question: "What is the perimeter of a square with side 5?",
+            options: ["10", "15", "20", "25"],
+            answer: 2
+        }
+
+    ],
+
+
+    class8science: [
+
+        {
+            question: "Which organ pumps blood?",
+            options: ["Brain", "Heart", "Lung", "Stomach"],
+            answer: 1
+        },
+
+        {
+            question: "Which gas is needed for breathing?",
+            options: ["Oxygen", "Hydrogen", "Helium", "Carbon dioxide"],
+            answer: 0
+        },
+
+        {
+            question: "Which part of a plant makes food?",
+            options: ["Root", "Stem", "Leaf", "Flower"],
+            answer: 2
+        },
+
+        {
+            question: "Which force pulls objects toward Earth?",
+            options: ["Friction", "Gravity", "Magnetic force", "Muscular force"],
+            answer: 1
+        },
+
+        {
+            question: "Which material is a good conductor of electricity?",
+            options: ["Copper", "Rubber", "Wood", "Plastic"],
+            answer: 0
+        },
+
+        {
+            question: "Which is a renewable source of energy?",
+            options: ["Coal", "Petroleum", "Solar energy", "Natural gas"],
+            answer: 2
+        },
+
+        {
+            question: "Which organ is used for hearing?",
+            options: ["Eye", "Ear", "Nose", "Skin"],
+            answer: 1
+        },
+
+        {
+            question: "Which organ is used for seeing?",
+            options: ["Ear", "Eye", "Tongue", "Nose"],
+            answer: 1
+        },
+
+        {
+            question: "Water changes into vapour by which process?",
+            options: ["Freezing", "Melting", "Evaporation", "Condensation"],
+            answer: 2
+        },
+
+        {
+            question: "Water vapour changes into liquid by which process?",
+            options: ["Condensation", "Evaporation", "Freezing", "Melting"],
+            answer: 0
+        },
+
+        {
+            question: "Which disease can be caused by microorganisms?",
+            options: ["Common cold", "Broken bone", "Sprain", "Burn"],
+            answer: 0
+        },
+
+        {
+            question: "Which is a non-renewable resource?",
+            options: ["Sunlight", "Wind", "Coal", "Water"],
+            answer: 2
+        },
+
+        {
+            question: "What is friction?",
+            options: [
+                "A force opposing motion",
+                "A type of light",
+                "A type of sound",
+                "A type of heat"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "Which planet is known for its rings?",
+            options: ["Earth", "Mars", "Saturn", "Mercury"],
+            answer: 2
+        },
+
+        {
+            question: "Which is the natural satellite of Earth?",
+            options: ["Sun", "Moon", "Mars", "Venus"],
+            answer: 1
+        }
+
+    ],
+
+
+    class9math: [
+
+        {
+            question: "What is the degree of x cubed?",
+            options: ["1", "2", "3", "4"],
+            answer: 2
+        },
+
+        {
+            question: "What is the coefficient of x in 5x + 2?",
+            options: ["2", "5", "7", "x"],
+            answer: 1
+        },
+
+        {
+            question: "What is the value of 2 squared?",
+            options: ["2", "4", "6", "8"],
+            answer: 1
+        },
+
+        {
+            question: "What is the square root of 144?",
+            options: ["10", "11", "12", "14"],
+            answer: 2
+        },
+
+        {
+            question: "What is 15 squared?",
+            options: ["125", "200", "225", "250"],
+            answer: 2
+        },
+
+        {
+            question: "What is the value of 3 cubed?",
+            options: ["9", "18", "27", "36"],
+            answer: 2
+        },
+
+        {
+            question: "Which point is the origin?",
+            options: [
+                "(1,1)",
+                "(0,0)",
+                "(1,0)",
+                "(0,1)"
+            ],
+            answer: 1
+        },
+
+        {
+            question: "What is the distance between 0 and 5 on a number line?",
+            options: ["3", "4", "5", "6"],
+            answer: 2
+        },
+
+        {
+            question: "What is 2 + 3 x 4?",
+            options: ["20", "14", "24", "10"],
+            answer: 1
+        },
+
+        {
+            question: "What is 100 percent as a fraction?",
+            options: ["1/2", "1/4", "1", "2"],
+            answer: 2
+        },
+
+        {
+            question: "What is a rational number?",
+            options: [
+                "A number expressible as p/q",
+                "Only a whole number",
+                "Only an irrational number",
+                "Only zero"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "What is the value of 0 x 25?",
+            options: ["0", "25", "1", "50"],
+            answer: 0
+        },
+
+        {
+            question: "What is the value of 25 x 4?",
+            options: ["50", "75", "100", "125"],
+            answer: 2
+        },
+
+        {
+            question: "How many degrees are in a straight angle?",
+            options: ["90", "180", "270", "360"],
+            answer: 1
+        },
+
+        {
+            question: "How many degrees are in a complete angle?",
+            options: ["90", "180", "270", "360"],
+            answer: 3
+        }
+
+    ],
+
+
+    class9science: [
+
+        {
+            question: "What is the SI unit of mass?",
+            options: ["Gram", "Kilogram", "Newton", "Joule"],
+            answer: 1
+        },
+
+        {
+            question: "What is the SI unit of time?",
+            options: ["Minute", "Hour", "Second", "Day"],
+            answer: 2
+        },
+
+        {
+            question: "What is the SI unit of length?",
+            options: ["Metre", "Kilogram", "Second", "Newton"],
+            answer: 0
+        },
+
+        {
+            question: "Which particle is negatively charged?",
+            options: ["Proton", "Electron", "Neutron", "Nucleus"],
+            answer: 1
+        },
+
+        {
+            question: "Which particle is positively charged?",
+            options: ["Electron", "Proton", "Neutron", "Atom"],
+            answer: 1
+        },
+
+        {
+            question: "Which particle has no charge?",
+            options: ["Proton", "Electron", "Neutron", "Ion"],
+            answer: 2
+        },
+
+        {
+            question: "What is the basic unit of life?",
+            options: ["Atom", "Cell", "Tissue", "Organ"],
+            answer: 1
+        },
+
+        {
+            question: "Which organ controls many body activities?",
+            options: ["Heart", "Brain", "Lung", "Kidney"],
+            answer: 1
+        },
+
+        {
+            question: "What is velocity?",
+            options: [
+                "Speed in a particular direction",
+                "Mass per volume",
+                "Force per area",
+                "Distance only"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "What is acceleration?",
+            options: [
+                "Change in velocity per unit time",
+                "Distance only",
+                "Mass only",
+                "Force only"
+            ],
+            answer: 0
+        },
+
+        {
+            question: "What is the SI unit of energy?",
+            options: ["Newton", "Joule", "Watt", "Pascal"],
+            answer: 1
+        },
+
+        {
+            question: "What is the SI unit of power?",
+            options: ["Joule", "Newton", "Watt", "Metre"],
+            answer: 2
+        },
+
+        {
+            question: "What is the SI unit of pressure?",
+            options: ["Pascal", "Joule", "Watt", "Newton"],
+            answer: 0
+        },
+
+        {
+            question: "Which gas is most abundant in Earth's atmosphere?",
+            options: [
+                "Oxygen",
+                "Nitrogen",
+                "Carbon dioxide",
+                "Hydrogen"
+            ],
+            answer: 1
+        },
+
+        {
+            question: "Which organ helps in gas exchange?",
+            options: [
+                "Lungs",
+                "Stomach",
+                "Heart",
+                "Kidney"
+            ],
+            answer: 0
+        }
+
+    ]
+
+};
+
+
+<!-- ====================================== -->
+<!-- RANDOM QUESTION FUNCTION -->
+<!-- ====================================== -->
+
+function shuffleArray(array) {
+
+    var newArray =
+        array.slice();
+
+    for (
+        var i = newArray.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        var j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+        var temp =
+            newArray[i];
+
+        newArray[i] =
+            newArray[j];
+
+        newArray[j] =
+            temp;
+
+    }
+
+    return newArray;
+
+}
+
+
+function startRandomBankQuiz() {
+
+    var selectedClass =
+        document.getElementById(
+            "bank-class"
+        ).value;
+
+
+    var selectedSubject =
+        document.getElementById(
+            "bank-subject"
+        ).value;
+
+
+    var selectedSize =
+        parseInt(
+            document.getElementById(
+                "bank-size"
+            ).value
+        );
+
+
+    var quizKey =
+        "class" +
+        selectedClass +
+        selectedSubject;
+
+
+    var questions =
+        extraQuestionBank[quizKey];
+
+
+    if (!questions) {
+
+        document.getElementById(
+            "bank-status"
+        ).innerHTML =
+            "Question bank is not available.";
+
+        return;
+
+    }
+
+
+    var shuffled =
+        shuffleArray(questions);
+
+
+    var selectedQuestions =
+        shuffled.slice(
+            0,
+            Math.min(
+                selectedSize,
+                shuffled.length
+            )
+        );
+
+
+    quizData["randomBank"] = {
+
+        title:
+            "Random Question Bank Quiz",
+
+        questions:
+            selectedQuestions
+
+    };
+
+
+    document.getElementById(
+        "bank-status"
+    ).innerHTML =
+        selectedQuestions.length +
+        " random questions selected.";
+
+
+    if (typeof startQuiz === "function") {
+
+        startQuiz("randomBank");
+
+    }
+
+}
+
+
+<!-- ====================================== -->
+<!-- LOAD SUBJECTS -->
+<!-- ====================================== -->
+
+function loadBankSubjects() {
+
+    var selectedClass =
+        document.getElementById(
+            "bank-class"
+        ).value;
+
+
+    var subject =
+        document.getElementById(
+            "bank-subject"
+        );
+
+
+    subject.innerHTML = "";
+
+
+    var mathOption =
+        document.createElement(
+            "option"
+        );
+
+    mathOption.value =
+        "math";
+
+    mathOption.innerHTML =
+        "Mathematics";
+
+    subject.appendChild(
+        mathOption
+    );
+
+
+    var scienceOption =
+        document.createElement(
+            "option"
+        );
+
+    scienceOption.value =
+        "science";
+
+    scienceOption.innerHTML =
+        "Science";
+
+    subject.appendChild(
+        scienceOption
+    );
+
+}
+
+
+<!-- ====================================== -->
+<!-- RANDOM QUESTION COUNT INFO -->
+<!-- ====================================== -->
+
+function updateQuestionBankInfo() {
+
+    var selectedClass =
+        document.getElementById(
+            "bank-class"
+        ).value;
+
+
+    var selectedSubject =
+        document.getElementById(
+            "bank-subject"
+        ).value;
+
+
+    var key =
+        "class" +
+        selectedClass +
+        selectedSubject;
+
+
+    var bank =
+        extraQuestionBank[key];
+
+
+    if (!bank) {
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "bank-status"
+    ).innerHTML =
+        "Available questions: " +
+        bank.length;
+
+}
+
+
+document.getElementById(
+    "bank-class"
+).addEventListener(
+    "change",
+    updateQuestionBankInfo
+);
+
+
+document.getElementById(
+    "bank-subject"
+).addEventListener(
+    "change",
+    updateQuestionBankInfo
+);
+
+
+updateQuestionBankInfo();
+
+
+</script>
+
+
+<!-- ====================================== -->
+<!-- PART 4 END -->
+<!-- ====================================== -->
+<!-- ====================================== -->
+<!-- CHAPTER READER - PART 5 -->
+<!-- MATH SCIENCE ENGLISH -->
+<!-- ASCII ONLY -->
+<!-- ====================================== -->
+
+<section id="chapter-reader">
+
+    <h2>Chapter Reader</h2>
+
+    <div id="chapter-menu">
+
+        <h3>Class 8</h3>
+
+        <button onclick="openChapter('c8m1')">
+            Class 8 Mathematics - Chapter 1
+        </button>
+
+        <button onclick="openChapter('c8m2')">
+            Class 8 Mathematics - Chapter 2
+        </button>
+
+        <button onclick="openChapter('c8s1')">
+            Class 8 Science - Chapter 1
+        </button>
+
+        <button onclick="openChapter('c8s2')">
+            Class 8 Science - Chapter 2
+        </button>
+
+        <button onclick="openChapter('c8e1')">
+            Class 8 English - Chapter 1
+        </button>
+
+        <button onclick="openChapter('c8e2')">
+            Class 8 English - Chapter 2
+        </button>
+
+
+        <h3>Class 9</h3>
+
+        <button onclick="openChapter('c9m1')">
+            Class 9 Mathematics - Chapter 1
+        </button>
+
+        <button onclick="openChapter('c9m2')">
+            Class 9 Mathematics - Chapter 2
+        </button>
+
+        <button onclick="openChapter('c9s1')">
+            Class 9 Science - Chapter 1
+        </button>
+
+        <button onclick="openChapter('c9s2')">
+            Class 9 Science - Chapter 2
+        </button>
+
+        <button onclick="openChapter('c9e1')">
+            Class 9 English - Chapter 1
+        </button>
+
+        <button onclick="openChapter('c9e2')">
+            Class 9 English - Chapter 2
+        </button>
+
+    </div>
+
+
+    <div id="chapter-reading-area">
+
+        <h2>Select a Chapter</h2>
+
+        <p>
+            Select a chapter from the list above.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ====================================== -->
+<!-- CHAPTER READER CSS -->
+<!-- ====================================== -->
+
+<style>
+
+#chapter-reader {
+    padding: 30px;
+    margin-top: 30px;
+}
+
+#chapter-menu {
+    padding: 20px;
+    border: 1px solid #cccccc;
+}
+
+#chapter-menu h3 {
+    margin-top: 25px;
+}
+
+#chapter-menu button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin: 8px 0;
+    text-align: left;
+    cursor: pointer;
+}
+
+#chapter-reading-area {
+    margin-top: 25px;
+    padding: 30px;
+    border: 1px solid #cccccc;
+    line-height: 1.8;
+}
+
+#chapter-reading-area h2 {
+    margin-bottom: 20px;
+}
+
+#chapter-reading-area h3 {
+    margin-top: 25px;
+}
+
+.chapter-box {
+    margin-bottom: 30px;
+}
+
+.chapter-example {
+    padding: 15px;
+    margin: 15px 0;
+    border-left: 4px solid #555555;
+}
+
+.chapter-question {
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #cccccc;
+}
+
+.back-button {
+    padding: 12px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+</style>
+
+
+<!-- ====================================== -->
+<!-- CHAPTER DATA AND READER -->
+<!-- ====================================== -->
+
+<script>
+
+var chapterData = {
+
+    c8m1: {
+
+        title: "Class 8 Mathematics - Chapter 1",
+
+        content: `
+        <div class="chapter-box">
+
+            <h2>Rational Numbers</h2>
+
+            <p>
+                A rational number is a number that can be
+                written in the form p divided by q, where p
+                and q are integers and q is not zero.
+            </p>
+
+            <h3>Important Points</h3>
+
+            <p>
+                The number on the top is called the numerator.
+            </p>
+
+            <p>
+                The number at the bottom is called the denominator.
+            </p>
+
+            <div class="chapter-example">
+
+                <h3>Example</h3>
+
+                <p>
+                    3/4 is a rational number.
+                </p>
+
+                <p>
+                    Here 3 is the numerator and 4 is the denominator.
+                </p>
+
+            </div>
+
+            <h3>Practice Questions</h3>
+
+            <div class="chapter-question">
+                What is the numerator of 5/8?
+            </div>
+
+            <div class="chapter-question">
+                What is the denominator of 7/9?
+            </div>
+
+            <div class="chapter-question">
+                Is 2/3 a rational number?
+            </div>
+
+        </div>
+        `
+
+    },
+
+
+    c8m2: {
+
+        title: "Class 8 Mathematics - Chapter 2",
+
+        content: `
+        <div class="chapter-box">
+
+            <h2>Linear Equations</h2>
+
+            <p>
+                A linear equation contains an unknown value
+                and an equality sign.
+            </p>
+
+            <h3>Example</h3>
+
+            <div class="chapter-example">
+
+                <p>
+                    x + 5 = 10
+                </p>
+
+                <p>
+                    Subtract 5 from both sides.
+                </p>
+
+                <p>
+                    Therefore x = 5.
+                </p>
+
+            </div>
+
+            <h3>Important Points</h3>
+
+            <p>
+                The unknown value is commonly represented by
+                a letter such as x or y.
+            </p>
+
+            <h3>Practice Questions</h3>
+
+            <div class="chapter-question">
+                Solve x + 7 = 15.
+            </div>
+
+            <div class="chapter-question">
+                Solve x - 4 = 10.
+            </div>
+
+        </div>
+        `
+
+    },
+
+
+    c8s1: {
+
+        title: "Class 8 Science - Chapter 1",
+
+        content: `
+        <div class="chapter-box">
+
+            <h2>Science and Living World</h2>
+
+            <p>
+                Science helps us understand the world around us.
+                We use observation, experiments and reasoning
+                to understand natural phenomena.
+            </p>
+
+            <h3>Observation</h3>
+
+            <p>
+                Observation means carefully noticing something
+                and collecting information about it.
+            </p>
+
+            <h3>Experiment</h3>
+
+            <p>
+                An experiment is a planned activity used to
+                test an idea or find information.
+            </p>
+
+            <h3>Important Points</h3>
+
+            <ul>
+                <li>Science is based on evidence.</li>
+                <li>Observation is important in science.</li>
+                <li>Experiments help test ideas.</li>
+            </ul>
+
+            <h3>Practice Questions</h3>
+
+            <div class="chapter-question">
+                What is observation?
+            </div>
+
+            <div class="chapter-question">
+                Why are experiments important?
+            </div>
+
+        </div>
+        `
+
+    },
+
+
+    c8s2: {
+
+        title: "Class 8 Science - Chapter 2",
+
+        content: `
+        <div class="chapter-box">
+
+            <h2>Microorganisms</h2>
+
+            <p>
+                Microorganisms are very small living organisms
+                that usually cannot be seen clearly with our
+                unaided eyes.
+            </p>
+
+            <h3>Examples</h3>
+
+            <ul>
+                <li>Bacteria</li>
+                <li>Some fungi</li>
+                <li>Some protozoa</li>
+                <li>Some algae</li>
+            </ul>
+
+            <h3>Useful Microorganisms</h3>
+
+            <p>
+                Some microorganisms are useful in food production,
+                medicine and other processes.
+            </p>
+
+            <h3>Practice Questions</h3>
+
+            <div class="chapter-question">
+                What are microorganisms?
+            </div>
+
+            <div class="chapter-question">
+                Give two examples of microorganisms.
+            </div>
+
+        </div>
+        `
+
+    },
+
+
+    c8e1: {
+
+        title: "Class 8 English - Chapter 1",
+
+        content: `
+        <div class="chapter-box">
+
+            <h2>English Reading Skills</h2>
+
+            <p>
+                Reading is an important language skill.
+                Good reading helps us understand ideas,
+                information and stories.
+            </p>
+
+            <h3>How to Read Better</h3>
+
+            <ul>
+                <li>Read the passage carefully.</li>
+                <li>Understand the main idea.</li>
+                <li>Look for important words.</li>
+                <li>Read difficult sentences again.</li>
+            </ul>
+
+            <h3>Vocabulary</h3>
+
+            <p>
+                Vocabulary means the collection of words
+                that a person knows and uses.
+            </p>
+
+            <h3>Practice</h3>
+
+            <div class="chapter-question">
+                What is the main idea of a passage?
+            </div>
+
+            <div class="chapter-question">
+                Why is vocabulary important?
+            </div>
+
+        </div>
+        `
+
+    },
+
+
+    c8e2: {
+
+        title: "Class 8 English - Chapter 2",
+
+        content: `
+        <div class="chapter-box">
+
+            <h2>Grammar Basics</h2>
+
+            <p>
+                Grammar is the system of rules used to form
+                correct sentences.
+            </p>
+
+            <h3>Parts of Speech</h3>
+
+            <ul>
+                <li>Noun</li>
+                <li>Pronoun</li>
+                <li>Verb</li>
+                <li>Adjective</li>
+                <li>Adverb</li>
+                <li>Preposition</li>
+            </ul>
+
+            <h3>Example</h3>
+
+            <div class="chapter-example">
+
+                <p>
+                    Ravi plays football.
+                </p>
+
+                <p>
+                    Ravi is a noun.
+                </p>
+
+                <p>
+                    Plays is a verb.
+                </p>
+
+            </div>
+
+        </div>
+        `
+
+    },
+
+
+    c9m1: {
+
+        title: "Class 9 Mathematics - Chapter 1",
+
+        content: `
+        <div class="chapter-box">
+
+            <h2>Number Systems</h2>
+
+            <p>
+                Numbers can be classified into different
+                categories such as natural numbers, whole
+                numbers, integers, rational numbers and
+                irrational numbers.
+            </p>
+
+            <h3>Natural Numbers</h3>
+
+            <p>
+                Natural numbers are counting numbers such as
+                1, 2, 3, 4 and so on.
+            </p>
+
+            <h3>Whole Numbers</h3>
+
+            <p>
+                Whole numbers include zero and the natural numbers.
+            </p>
+
+            <h3>Practice Questions</h3>
+
+            <div class="chapter-question">
+                What are natural numbers?
+            </div>
+
+            <div class="chapter-question">
+                What are whole numbers?
+            </div>
+
+        </div>
+        `
+
+    },
+
+
+    c9m2: {
+
+        title: "Class 9 Mathematics - Chapter 2",
+
+        content: `
+        <div class="chapter-box">
+
+            <h2>Polynomials</h2>
+
+            <p>
+                A polynomial is an algebraic expression made
+                using variables, constants and powers of variables.
+            </p>
+
+            <h3>Examples</h3>
+
+            <div class="chapter-example">
+
+                <p>
+                    x + 2
+                </p>
+
+                <p>
+                    x squared + 3x + 2
+                </p>
+
+            </div>
+
+            <h3>Degree</h3>
+
+            <p>
+                The highest power of the variable in a polynomial
+                is called its degree.
+            </p>
+
+            <div class="chapter-question">
+                Find the degree of x squared + 2x + 1.
+            </div>
+
+        </div>
+        `
+
+    },
+
+
+    c9s1: {
+
+        title: "Class 9 Science - Chapter 1",
+
+        content: `
+        <div class="chapter-box">
+
+            <h2>Matter</h2>
+
+            <p>
+                Matter is anything that has mass and occupies space.
+            </p>
+
+            <h3>States of Matter</h3>
+
+            <ul>
+                <li>Solid</li>
+                <li>Liquid</li>
+                <li>Gas</li>
+            </ul>
+
+            <h3>Solid</h3>
+
+            <p>
+                Solids have a definite shape and definite volume.
+            </p>
+
+            <h3>Liquid</h3>
+
+            <p>
+                Liquids have a definite volume but take the shape
+                of their container.
+            </p>
+
+            <h3>Gas</h3>
+
+            <p>
+                Gases do not have a fixed shape or fixed volume.
+            </p>
+
+            <h3>Practice Questions</h3>
+
+            <div class="chapter-question">
+                Define matter.
+            </div>
+
+            <div class="chapter-question">
+                Name the three common states of matter.
+            </div>
+
+        </div>
+        `
+
+    },
+
+
+    c9s2: {
+
+        title: "Class 9 Science - Chapter 2",
+
+        content: `
+        <div class="chapter-box">
+
+            <h2>Atoms and Molecules</h2>
+
+            <p>
+                An atom is a basic unit of an element.
+                Atoms contain smaller particles.
+            </p>
+
+            <h3>Subatomic Particles</h3>
+
+            <ul>
+                <li>Protons</li>
+                <li>Neutrons</li>
+                <li>Electrons</li>
+            </ul>
+
+            <h3>Proton</h3>
+
+            <p>
+                A proton has a positive electric charge.
+            </p>
+
+            <h3>Electron</h3>
+
+            <p>
+                An electron has a negative electric charge.
+            </p>
+
+            <h3>Neutron</h3>
+
+            <p>
+                A neutron has no electric charge.
+            </p>
+
+            <div class="chapter-question">
+                Name the three main subatomic particles.
+            </div>
+
+        </div>
+        `
+
+    },
+
+
+    c9e1: {
+
+        title: "Class 9 English - Chapter 1",
+
+        content: `
+        <div class="chapter-box">
+
+            <h2>Reading and Comprehension</h2>
+
+            <p>
+                Reading comprehension means understanding
+                the meaning and ideas presented in a passage.
+            </p>
+
+            <h3>Important Skills</h3>
+
+            <ul>
+                <li>Find the main idea.</li>
+                <li>Identify important details.</li>
+                <li>Understand new words from context.</li>
+                <li>Answer questions using the passage.</li>
+            </ul>
+
+            <h3>Practice Questions</h3>
+
+            <div class="chapter-question">
+                What is the main idea of a passage?
+            </div>
+
+            <div class="chapter-question">
+                Why should we read a passage carefully?
+            </div>
+
+        </div>
+        `
+
+    },
+
+
+    c9e2: {
+
+        title: "Class 9 English - Chapter 2",
+
+        content: `
+        <div class="chapter-box">
+
+            <h2>English Grammar</h2>
+
+            <p>
+                Grammar helps us construct meaningful and
+                grammatically correct sentences.
+            </p>
+
+            <h3>Sentence</h3>
+
+            <p>
+                A sentence is a group of words that expresses
+                a complete thought.
+            </p>
+
+            <h3>Verb</h3>
+
+            <p>
+                A verb generally expresses an action or state.
+            </p>
+
+            <h3>Noun</h3>
+
+            <p>
+                A noun is a word used to name a person,
+                place, thing or idea.
+            </p>
+
+            <div class="chapter-example">
+
+                <p>
+                    The student reads a book.
+                </p>
+
+                <p>
+                    Student and book are nouns.
+                </p>
+
+                <p>
+                    Reads is a verb.
+                </p>
+
+            </div>
+
+        </div>
+        `
+
+    }
+
+};
+
+
+<!-- ====================================== -->
+<!-- OPEN CHAPTER FUNCTION -->
+<!-- ====================================== -->
+
+function openChapter(chapterId) {
+
+    var chapter =
+        chapterData[chapterId];
+
+
+    if (!chapter) {
+
+        document.getElementById(
+            "chapter-reading-area"
+        ).innerHTML =
+            "<h2>Chapter not found.</h2>";
+
+        return;
+
+    }
+
+
+    var area =
+        document.getElementById(
+            "chapter-reading-area"
+        );
+
+
+    area.innerHTML =
+
+        "<h2>" +
+        chapter.title +
+        "</h2>" +
+
+        chapter.content +
+
+        "<button class='back-button' " +
+        "onclick='closeChapter()'>" +
+        "Back to Chapters" +
+        "</button>";
+
+
+    area.scrollIntoView({
+        behavior: "smooth"
+    });
+
+
+    saveChapterProgress(chapterId);
+
+}
+
+
+<!-- ====================================== -->
+<!-- CLOSE CHAPTER -->
+<!-- ====================================== -->
+
+function closeChapter() {
+
+    document.getElementById(
+        "chapter-reading-area"
+    ).innerHTML =
+
+        "<h2>Select a Chapter</h2>" +
+
+        "<p>" +
+        "Select a chapter from the list above." +
+        "</p>";
+
+}
+
+
+<!-- ====================================== -->
+<!-- SAVE CHAPTER PROGRESS -->
+<!-- ====================================== -->
+
+function saveChapterProgress(chapterId) {
+
+    var completed =
+        JSON.parse(
+            localStorage.getItem(
+                "completedChapters"
+            ) || "[]"
+        );
+
+
+    if (
+        completed.indexOf(chapterId) === -1
+    ) {
+
+        completed.push(chapterId);
+
+    }
+
+
+    localStorage.setItem(
+        "completedChapters",
+        JSON.stringify(completed)
+    );
+
+
+    localStorage.setItem(
+        "chapterCount",
+        completed.length
+    );
+
+
+    if (
+        typeof updateStats === "function"
+    ) {
+
+        updateStats();
+
+    }
+
+}
+
+</script>
+
+
+<!-- ====================================== -->
+<!-- PART 5 END -->
+<!-- ====================================== -->
+<!-- ====================================== -->
+<!-- SCIENCE CHAPTERS - PART 6 -->
+<!-- ASCII ONLY -->
+<!-- ====================================== -->
+
+<section id="science-chapter-list">
+
+    <h2>Science Chapters</h2>
+
+    <h3>Class 8 Science</h3>
+
+    <button onclick="openScienceChapter('c8science3')">
+        Synthetic Fibres and Plastics
+    </button>
+
+    <button onclick="openScienceChapter('c8science4')">
+        Materials: Metals and Non-Metals
+    </button>
+
+    <button onclick="openScienceChapter('c8science5')">
+        Coal and Petroleum
+    </button>
+
+    <button onclick="openScienceChapter('c8science6')">
+        Combustion and Flame
+    </button>
+
+    <button onclick="openScienceChapter('c8science7')">
+        Conservation of Plants and Animals
+    </button>
+
+    <button onclick="openScienceChapter('c8science8')">
+        Cell - Structure and Functions
+    </button>
+
+    <button onclick="openScienceChapter('c8science9')">
+        Reproduction in Animals
+    </button>
+
+    <button onclick="openScienceChapter('c8science10')">
+        Reaching the Age of Adolescence
+    </button>
+
+    <button onclick="openScienceChapter('c8science11')">
+        Force and Pressure
+    </button>
+
+    <button onclick="openScienceChapter('c8science12')">
+        Friction
+    </button>
+
+    <button onclick="openScienceChapter('c8science13')">
+        Sound
+    </button>
+
+    <button onclick="openScienceChapter('c8science14')">
+        Chemical Effects of Electric Current
+    </button>
+
+    <button onclick="openScienceChapter('c8science15')">
+        Some Natural Phenomena
+    </button>
+
+    <button onclick="openScienceChapter('c8science16')">
+        Light
+    </button>
+
+    <button onclick="openScienceChapter('c8science17')">
+        Stars and the Solar System
+    </button>
+
+    <button onclick="openScienceChapter('c8science18')">
+        Pollution of Air and Water
+    </button>
+
+
+    <div id="science-chapter-content">
+
+        <h2>Select a Science Chapter</h2>
+
+        <p>
+            Click a chapter to start reading.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ====================================== -->
+<!-- SCIENCE CHAPTER CSS -->
+<!-- ====================================== -->
+
+<style>
+
+#science-chapter-list {
+    padding: 30px;
+    margin-top: 30px;
+}
+
+#science-chapter-list button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin: 8px 0;
+    text-align: left;
+    cursor: pointer;
+}
+
+#science-chapter-content {
+    margin-top: 25px;
+    padding: 30px;
+    border: 1px solid #cccccc;
+    line-height: 1.8;
+}
+
+.science-topic {
+    margin-top: 25px;
+}
+
+.science-example {
+    padding: 15px;
+    margin: 15px 0;
+    border-left: 4px solid #555555;
+}
+
+.science-question {
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #cccccc;
+}
+
+</style>
+
+
+<!-- ====================================== -->
+<!-- SCIENCE CHAPTER DATA -->
+<!-- ====================================== -->
+
+<script>
+
+var scienceChapterData = {
+
+    c8science3: {
+
+        title: "Synthetic Fibres and Plastics",
+
+        content: `
+
+        <h2>Synthetic Fibres and Plastics</h2>
+
+        <p>
+        Synthetic fibres are fibres made by humans using
+        chemical substances.
+        </p>
+
+        <div class="science-topic">
+
+            <h3>Examples of Synthetic Fibres</h3>
+
+            <ul>
+                <li>Rayon</li>
+                <li>Nylon</li>
+                <li>Polyester</li>
+                <li>Acrylic</li>
+            </ul>
+
+        </div>
+
+        <div class="science-topic">
+
+            <h3>Plastics</h3>
+
+            <p>
+            Plastics are materials that can be moulded into
+            different shapes.
+            </p>
+
+            <p>
+            Some plastics are very strong and light.
+            </p>
+
+        </div>
+
+        <div class="science-question">
+            What are synthetic fibres?
+        </div>
+
+        <div class="science-question">
+            Name two synthetic fibres.
+        </div>
+
+        `
+
+    },
+
+
+    c8science4: {
+
+        title: "Materials: Metals and Non-Metals",
+
+        content: `
+
+        <h2>Materials: Metals and Non-Metals</h2>
+
+        <p>
+        Elements can have different physical and chemical
+        properties.
+        </p>
+
+        <h3>Metals</h3>
+
+        <p>
+        Metals are generally hard, shiny and good conductors
+        of heat and electricity.
+        </p>
+
+        <h3>Non-Metals</h3>
+
+        <p>
+        Non-metals generally have properties different from
+        metals.
+        </p>
+
+        <h3>Examples</h3>
+
+        <ul>
+            <li>Iron is a metal.</li>
+            <li>Copper is a metal.</li>
+            <li>Sulphur is a non-metal.</li>
+            <li>Carbon is a non-metal.</li>
+        </ul>
+
+        <div class="science-question">
+            Give two examples of metals.
+        </div>
+
+        <div class="science-question">
+            Give two examples of non-metals.
+        </div>
+
+        `
+
+    },
+
+
+    c8science5: {
+
+        title: "Coal and Petroleum",
+
+        content: `
+
+        <h2>Coal and Petroleum</h2>
+
+        <p>
+        Coal and petroleum are natural resources formed over
+        very long periods of time.
+        </p>
+
+        <h3>Coal</h3>
+
+        <p>
+        Coal is a fossil fuel and is used as a source of energy.
+        </p>
+
+        <h3>Petroleum</h3>
+
+        <p>
+        Petroleum is an important fossil fuel from which
+        several useful products are obtained.
+        </p>
+
+        <h3>Fossil Fuels</h3>
+
+        <p>
+        Coal, petroleum and natural gas are commonly called
+        fossil fuels.
+        </p>
+
+        <div class="science-question">
+            What are fossil fuels?
+        </div>
+
+        <div class="science-question">
+            Name two fossil fuels.
+        </div>
+
+        `
+
+    },
+
+
+    c8science6: {
+
+        title: "Combustion and Flame",
+
+        content: `
+
+        <h2>Combustion and Flame</h2>
+
+        <p>
+        Combustion is a chemical process in which a substance
+        reacts with oxygen and generally releases heat.
+        </p>
+
+        <h3>Example of Combustion</h3>
+
+        <div class="science-example">
+
+            <p>
+            Burning of wood is an example of combustion.
+            </p>
+
+        </div>
+
+        <h3>Conditions Required for Combustion</h3>
+
+        <ul>
+
+            <li>A combustible substance</li>
+
+            <li>Oxygen or another suitable oxidising agent</li>
+
+            <li>Enough heat to reach the ignition temperature</li>
+
+        </ul>
+
+        <h3>Ignition Temperature</h3>
+
+        <p>
+        The lowest temperature at which a substance catches
+        fire is called its ignition temperature.
+        </p>
+
+        <h3>Flame</h3>
+
+        <p>
+        A flame is the visible gaseous part of some burning
+        substances.
+        </p>
+
+        <h3>Fuel</h3>
+
+        <p>
+        A fuel is a substance that releases useful energy
+        when it undergoes combustion.
+        </p>
+
+        <h3>Important Questions</h3>
+
+        <div class="science-question">
+            What is combustion?
+        </div>
+
+        <div class="science-question">
+            What is ignition temperature?
+        </div>
+
+        <div class="science-question">
+            What are the conditions necessary for combustion?
+        </div>
+
+        `
+
+    },
+
+
+    c8science7: {
+
+        title: "Conservation of Plants and Animals",
+
+        content: `
+
+        <h2>Conservation of Plants and Animals</h2>
+
+        <p>
+        Conservation means protection and careful use of
+        natural resources and living organisms.
+        </p>
+
+        <h3>Wildlife</h3>
+
+        <p>
+        Wildlife includes animals and other organisms living
+        in their natural habitats.
+        </p>
+
+        <h3>Deforestation</h3>
+
+        <p>
+        Deforestation means large scale removal of forests.
+        </p>
+
+        <h3>Conservation</h3>
+
+        <ul>
+            <li>Planting trees</li>
+            <li>Protecting forests</li>
+            <li>Protecting wildlife</li>
+            <li>Using resources carefully</li>
+        </ul>
+
+        <div class="science-question">
+            What is conservation?
+        </div>
+
+        <div class="science-question">
+            What is deforestation?
+        </div>
+
+        `
+
+    },
+
+
+    c8science8: {
+
+        title: "Cell - Structure and Functions",
+
+        content: `
+
+        <h2>Cell - Structure and Functions</h2>
+
+        <p>
+        The cell is the basic structural and functional unit
+        of living organisms.
+        </p>
+
+        <h3>Cell Membrane</h3>
+
+        <p>
+        The cell membrane forms the outer boundary of a cell.
+        </p>
+
+        <h3>Nucleus</h3>
+
+        <p>
+        The nucleus contains genetic material and helps control
+        many activities of the cell.
+        </p>
+
+        <h3>Cytoplasm</h3>
+
+        <p>
+        Cytoplasm is the material present inside the cell
+        around the nucleus.
+        </p>
+
+        <div class="science-question">
+            What is a cell?
+        </div>
+
+        <div class="science-question">
+            What is the function of the nucleus?
+        </div>
+
+        `
+
+    },
+
+
+    c8science9: {
+
+        title: "Reproduction in Animals",
+
+        content: `
+
+        <h2>Reproduction in Animals</h2>
+
+        <p>
+        Reproduction is the biological process by which
+        organisms produce new individuals of their kind.
+        </p>
+
+        <h3>Types</h3>
+
+        <p>
+        Reproduction can occur through different biological
+        processes in different organisms.
+        </p>
+
+        <h3>Importance</h3>
+
+        <p>
+        Reproduction helps in the continuation of species.
+        </p>
+
+        <div class="science-question">
+            What is reproduction?
+        </div>
+
+        <div class="science-question">
+            Why is reproduction important?
+        </div>
+
+        `
+
+    },
+
+
+    c8science10: {
+
+        title: "Reaching the Age of Adolescence",
+
+        content: `
+
+        <h2>Reaching the Age of Adolescence</h2>
+
+        <p>
+        Adolescence is the period of life during which
+        important physical and biological changes occur.
+        </p>
+
+        <h3>Puberty</h3>
+
+        <p>
+        Puberty is the stage when the body undergoes changes
+        associated with becoming capable of reproduction.
+        </p>
+
+        <h3>Healthy Habits</h3>
+
+        <ul>
+            <li>Eat a balanced diet.</li>
+            <li>Get enough sleep.</li>
+            <li>Maintain personal hygiene.</li>
+            <li>Stay physically active.</li>
+        </ul>
+
+        `
+
+    },
+
+
+    c8science11: {
+
+        title: "Force and Pressure",
+
+        content: `
+
+        <h2>Force and Pressure</h2>
+
+        <p>
+        A force is a push or pull acting on an object.
+        </p>
+
+        <h3>Effects of Force</h3>
+
+        <ul>
+            <li>It can change motion.</li>
+            <li>It can change direction.</li>
+            <li>It can change the shape of an object.</li>
+        </ul>
+
+        <h3>Pressure</h3>
+
+        <p>
+        Pressure is related to the force acting on a given area.
+        </p>
+
+        <div class="science-question">
+            What is force?
+        </div>
+
+        <div class="science-question">
+            Give two effects of force.
+        </div>
+
+        `
+
+    },
+
+
+    c8science12: {
+
+        title: "Friction",
+
+        content: `
+
+        <h2>Friction</h2>
+
+        <p>
+        Friction is a force that opposes the relative motion
+        between surfaces in contact.
+        </p>
+
+        <h3>Uses of Friction</h3>
+
+        <ul>
+            <li>Walking</li>
+            <li>Writing</li>
+            <li>Braking vehicles</li>
+        </ul>
+
+        <h3>Reducing Friction</h3>
+
+        <p>
+        Lubricants and other methods can be used to reduce
+        friction in suitable situations.
+        </p>
+
+        <div class="science-question">
+            What is friction?
+        </div>
+
+        `
+
+    },
+
+
+    c8science13: {
+
+        title: "Sound",
+
+        content: `
+
+        <h2>Sound</h2>
+
+        <p>
+        Sound is produced by vibrating objects.
+        </p>
+
+        <h3>Vibration</h3>
+
+        <p>
+        A vibration is a rapid to-and-fro motion.
+        </p>
+
+        <h3>Sound Needs a Medium</h3>
+
+        <p>
+        Sound generally travels through a material medium.
+        </p>
+
+        <div class="science-question">
+            How is sound produced?
+        </div>
+
+        `
+
+    },
+
+
+    c8science14: {
+
+        title: "Chemical Effects of Electric Current",
+
+        content: `
+
+        <h2>Chemical Effects of Electric Current</h2>
+
+        <p>
+        Electric current passing through some liquids can
+        produce chemical changes.
+        </p>
+
+        <h3>Electrolysis</h3>
+
+        <p>
+        Electrolysis is a process in which electric current
+        causes chemical changes in a conducting liquid.
+        </p>
+
+        <div class="science-question">
+            What is electrolysis?
+        </div>
+
+        `
+
+    },
+
+
+    c8science15: {
+
+        title: "Some Natural Phenomena",
+
+        content: `
+
+        <h2>Some Natural Phenomena</h2>
+
+        <p>
+        Nature can produce phenomena such as lightning,
+        earthquakes and storms.
+        </p>
+
+        <h3>Lightning</h3>
+
+        <p>
+        Lightning is a large electrical discharge in the
+        atmosphere.
+        </p>
+
+        <h3>Earthquake Safety</h3>
+
+        <p>
+        During an earthquake, follow official safety
+        instructions and move to a safe location.
+        </p>
+
+        `
+
+    },
+
+
+    c8science16: {
+
+        title: "Light",
+
+        content: `
+
+        <h2>Light</h2>
+
+        <p>
+        Light allows us to see objects.
+        </p>
+
+        <h3>Reflection</h3>
+
+        <p>
+        Reflection is the bouncing back of light from a surface.
+        </p>
+
+        <h3>Mirrors</h3>
+
+        <p>
+        Mirrors are surfaces that reflect light strongly.
+        </p>
+
+        <div class="science-question">
+            What is reflection of light?
+        </div>
+
+        `
+
+    },
+
+
+    c8science17: {
+
+        title: "Stars and the Solar System",
+
+        content: `
+
+        <h2>Stars and the Solar System</h2>
+
+        <p>
+        The solar system contains the Sun and the objects
+        that move around it.
+        </p>
+
+        <h3>Planets</h3>
+
+        <p>
+        Planets move around the Sun in their respective orbits.
+        </p>
+
+        <h3>Moon</h3>
+
+        <p>
+        The Moon is Earth's natural satellite.
+        </p>
+
+        <div class="science-question">
+            What is a natural satellite?
+        </div>
+
+        `
+
+    },
+
+
+    c8science18: {
+
+        title: "Pollution of Air and Water",
+
+        content: `
+
+        <h2>Pollution of Air and Water</h2>
+
+        <p>
+        Pollution occurs when harmful substances enter
+        the environment and cause undesirable changes.
+        </p>
+
+        <h3>Air Pollution</h3>
+
+        <p>
+        Harmful gases and particles can pollute the air.
+        </p>
+
+        <h3>Water Pollution</h3>
+
+        <p>
+        Harmful substances can contaminate water sources.
+        </p>
+
+        <h3>Prevention</h3>
+
+        <ul>
+            <li>Reduce waste.</li>
+            <li>Keep water sources clean.</li>
+            <li>Plant and protect trees.</li>
+            <li>Use resources responsibly.</li>
+        </ul>
+
+        `
+
+    }
+
+};
+
+
+<!-- ====================================== -->
+<!-- OPEN SCIENCE CHAPTER -->
+<!-- ====================================== -->
+
+function openScienceChapter(chapterId) {
+
+    var chapter =
+        scienceChapterData[chapterId];
+
+
+    if (!chapter) {
+
+        document.getElementById(
+            "science-chapter-content"
+        ).innerHTML =
+            "<h2>Chapter not found.</h2>";
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "science-chapter-content"
+    ).innerHTML =
+
+        "<h2>" +
+        chapter.title +
+        "</h2>" +
+
+        chapter.content +
+
+        "<button onclick='closeScienceChapter()'>" +
+        "Back to Science Chapters" +
+        "</button>";
+
+
+    document.getElementById(
+        "science-chapter-content"
+    ).scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+function closeScienceChapter() {
+
+    document.getElementById(
+        "science-chapter-content"
+    ).innerHTML =
+
+        "<h2>Select a Science Chapter</h2>" +
+
+        "<p>" +
+        "Click a chapter to start reading." +
+        "</p>";
+
+}
+
+</script>
+
+
+<!-- ====================================== -->
+<!-- PART 6 END -->
+<!-- ====================================== -->
+<!-- PART 7 - CLASS 9 SCIENCE CHAPTER READER -->
+
+<style>
+.class9-science-box {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 1000px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+}
+
+.class9-science-box h2 {
+    margin-bottom: 15px;
+}
+
+.class9-science-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+}
+
+.class9-science-buttons button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #2563eb;
+    color: white;
+    font-size: 14px;
+}
+
+.class9-science-buttons button:hover {
+    opacity: 0.85;
+}
+
+.class9-science-reader {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #f5f7fb;
+}
+
+.class9-science-reader h3 {
+    margin-bottom: 12px;
+}
+
+.class9-science-reader h4 {
+    margin-top: 18px;
+}
+
+.class9-science-reader p {
+    line-height: 1.7;
+}
+
+.class9-science-reader li {
+    margin: 8px 0;
+}
+
+.close-science-reader {
+    margin-top: 20px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background: #dc2626;
+    color: white;
+}
+</style>
+
+<section class="class9-science-box">
+
+    <h2>Class 9 Science - Chapter Reader</h2>
+
+    <p>
+        Select a chapter to read notes and practice questions.
+    </p>
+
+    <div class="class9-science-buttons">
+
+        <button onclick="openClass9Science('matter')">
+            Matter in Our Surroundings
+        </button>
+
+        <button onclick="openClass9Science('purity')">
+            Is Matter Around Us Pure
+        </button>
+
+        <button onclick="openClass9Science('atoms')">
+            Atoms and Molecules
+        </button>
+
+        <button onclick="openClass9Science('structure')">
+            Structure of the Atom
+        </button>
+
+        <button onclick="openClass9Science('cell')">
+            The Fundamental Unit of Life
+        </button>
+
+        <button onclick="openClass9Science('tissues')">
+            Tissues
+        </button>
+
+        <button onclick="openClass9Science('motion')">
+            Motion
+        </button>
+
+        <button onclick="openClass9Science('force')">
+            Force and Laws of Motion
+        </button>
+
+        <button onclick="openClass9Science('gravitation')">
+            Gravitation
+        </button>
+
+        <button onclick="openClass9Science('work')">
+            Work and Energy
+        </button>
+
+        <button onclick="openClass9Science('sound')">
+            Sound
+        </button>
+
+        <button onclick="openClass9Science('food')">
+            Improvement in Food Resources
+        </button>
+
+    </div>
+
+    <div id="class9ScienceReader" class="class9-science-reader">
+
+        <h3 id="class9ScienceTitle"></h3>
+
+        <div id="class9ScienceContent"></div>
+
+        <button class="close-science-reader"
+                onclick="closeClass9Science()">
+            Close Chapter
+        </button>
+
+    </div>
+
+</section>
+
+<script>
+
+var class9ScienceData = {
+
+    matter: {
+        title: "Matter in Our Surroundings",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        Matter is anything that has mass and occupies space.
+        Everything around us such as air, water, soil and objects
+        is made up of matter.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>Matter is made up of very small particles.</li>
+            <li>Particles of matter have spaces between them.</li>
+            <li>Particles of matter are continuously moving.</li>
+            <li>Particles attract each other.</li>
+            <li>Matter can exist mainly as solid, liquid and gas.</li>
+        </ul>
+
+        <h4>Important Questions</h4>
+
+        <ol>
+            <li>What is matter?</li>
+            <li>Write three characteristics of particles of matter.</li>
+            <li>What are the three common states of matter?</li>
+            <li>What is diffusion?</li>
+        </ol>
+        `
+    },
+
+    purity: {
+        title: "Is Matter Around Us Pure",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        Substances around us may be pure substances or mixtures.
+        A mixture contains two or more substances combined physically.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>A pure substance contains only one kind of particles.</li>
+            <li>A mixture contains more than one substance.</li>
+            <li>Mixtures can be homogeneous or heterogeneous.</li>
+            <li>Solutions are homogeneous mixtures.</li>
+            <li>Suspensions are heterogeneous mixtures.</li>
+        </ul>
+
+        <h4>Important Questions</h4>
+
+        <ol>
+            <li>What is a pure substance?</li>
+            <li>What is a mixture?</li>
+            <li>Differentiate between homogeneous and heterogeneous mixtures.</li>
+            <li>What is a solution?</li>
+        </ol>
+        `
+    },
+
+    atoms: {
+        title: "Atoms and Molecules",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        Atoms are very small particles that make up matter.
+        Molecules are formed when two or more atoms combine chemically.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>An atom is the basic unit of an element.</li>
+            <li>Molecules can contain atoms of the same element.</li>
+            <li>Molecules can also contain atoms of different elements.</li>
+            <li>Chemical formula represents the composition of a substance.</li>
+            <li>Atoms combine in definite ratios.</li>
+        </ul>
+
+        <h4>Important Questions</h4>
+
+        <ol>
+            <li>What is an atom?</li>
+            <li>What is a molecule?</li>
+            <li>What is a chemical formula?</li>
+            <li>Why do atoms combine?</li>
+        </ol>
+        `
+    },
+
+    structure: {
+        title: "Structure of the Atom",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        An atom contains a small central nucleus and electrons
+        moving around the nucleus.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>Protons have positive charge.</li>
+            <li>Electrons have negative charge.</li>
+            <li>Neutrons have no electric charge.</li>
+            <li>The nucleus contains protons and neutrons.</li>
+            <li>Electrons are present around the nucleus.</li>
+        </ul>
+
+        <h4>Important Questions</h4>
+
+        <ol>
+            <li>Name the three basic particles of an atom.</li>
+            <li>What is the charge of a proton?</li>
+            <li>What is the charge of an electron?</li>
+            <li>Where are protons and neutrons located?</li>
+        </ol>
+        `
+    },
+
+    cell: {
+        title: "The Fundamental Unit of Life",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        The cell is considered the basic structural and functional
+        unit of life. Living organisms are made up of cells.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>Cells are surrounded by a cell membrane.</li>
+            <li>The nucleus controls many activities of the cell.</li>
+            <li>Cytoplasm is present between the membrane and nucleus.</li>
+            <li>Plant cells have a cell wall.</li>
+            <li>Plant cells contain chloroplasts for photosynthesis.</li>
+        </ul>
+
+        <h4>Important Questions</h4>
+
+        <ol>
+            <li>What is a cell?</li>
+            <li>What is the function of the nucleus?</li>
+            <li>What is the function of the cell membrane?</li>
+            <li>Write two differences between plant and animal cells.</li>
+        </ol>
+        `
+    },
+
+    tissues: {
+        title: "Tissues",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        A tissue is a group of similar cells that work together
+        to perform a particular function.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>Plant tissues are mainly meristematic and permanent tissues.</li>
+            <li>Animal tissues include epithelial, connective, muscular and nervous tissues.</li>
+            <li>Different tissues perform different functions.</li>
+            <li>Muscular tissue helps in movement.</li>
+            <li>Nervous tissue helps in transmitting signals.</li>
+        </ul>
+
+        <h4>Important Questions</h4>
+
+        <ol>
+            <li>What is a tissue?</li>
+            <li>Name the major types of animal tissues.</li>
+            <li>What is the function of muscular tissue?</li>
+            <li>What is nervous tissue?</li>
+        </ol>
+        `
+    },
+
+    motion: {
+        title: "Motion",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        An object is said to be in motion when its position changes
+        with respect to a reference point with time.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>Distance is the total path travelled.</li>
+            <li>Displacement is the shortest distance in a particular direction.</li>
+            <li>Speed is distance travelled per unit time.</li>
+            <li>Velocity is displacement per unit time.</li>
+            <li>Acceleration is the rate of change of velocity.</li>
+        </ul>
+
+        <h4>Important Questions</h4>
+
+        <ol>
+            <li>Define motion.</li>
+            <li>What is speed?</li>
+            <li>What is velocity?</li>
+            <li>What is acceleration?</li>
+        </ol>
+        `
+    },
+
+    force: {
+        title: "Force and Laws of Motion",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        Force is a push or pull that can change the state of motion
+        or shape of an object.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>Force can change the motion of an object.</li>
+            <li>Force can change the direction of motion.</li>
+            <li>Force can change the shape of an object.</li>
+            <li>Newton's laws describe important effects of force.</li>
+            <li>Momentum depends on mass and velocity.</li>
+        </ul>
+
+        <h4>Important Questions</h4>
+
+        <ol>
+            <li>What is force?</li>
+            <li>What is inertia?</li>
+            <li>What is momentum?</li>
+            <li>State the idea of Newton's laws of motion.</li>
+        </ol>
+        `
+    },
+
+    gravitation: {
+        title: "Gravitation",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        Gravitation is the force of attraction between objects having
+        mass. The Earth attracts objects towards its centre.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>Every object with mass attracts another object with mass.</li>
+            <li>Earth's gravitational force gives objects weight.</li>
+            <li>Mass and weight are different physical quantities.</li>
+            <li>Free fall occurs under the effect of gravity.</li>
+            <li>Acceleration due to gravity is represented by g.</li>
+        </ul>
+
+        <h4>Important Questions</h4>
+
+        <ol>
+            <li>What is gravitation?</li>
+            <li>What is free fall?</li>
+            <li>Differentiate between mass and weight.</li>
+            <li>What is acceleration due to gravity?</li>
+        </ol>
+        `
+    },
+
+    work: {
+        title: "Work and Energy",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        Work is said to be done when a force causes displacement
+        of an object in the direction of the force.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>Work depends on force and displacement.</li>
+            <li>Energy is the capacity to do work.</li>
+            <li>Kinetic energy is associated with motion.</li>
+            <li>Potential energy is associated with position or configuration.</li>
+            <li>Energy can change from one form to another.</li>
+        </ul>
+
+        <h4>Important Questions</h4>
+
+        <ol>
+            <li>Define work.</li>
+            <li>What is energy?</li>
+            <li>What is kinetic energy?</li>
+            <li>What is potential energy?</li>
+        </ol>
+        `
+    },
+
+    sound: {
+        title: "Sound",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        Sound is produced by vibrating objects. It travels through
+        a medium in the form of mechanical waves.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>Sound needs a medium to travel.</li>
+            <li>Sound cannot travel through vacuum.</li>
+            <li>Frequency determines the pitch of sound.</li>
+            <li>Amplitude is related to loudness.</li>
+            <li>Sound can be reflected from surfaces.</li>
+        </ul>
+
+        <h4>Important Questions</h4>
+
+        <ol>
+            <li>How is sound produced?</li>
+            <li>Why can sound not travel through vacuum?</li>
+            <li>What is frequency?</li>
+            <li>What is amplitude?</li>
+        </ol>
+        `
+    },
+
+    food: {
+        title: "Improvement in Food Resources",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        Improvement in food resources involves methods used to increase
+        the quality and quantity of food obtained from crops and animals.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>Crop variety improvement can increase useful characteristics.</li>
+            <li>Proper crop production practices improve yield.</li>
+            <li>Crop protection helps reduce losses.</li>
+            <li>Animal husbandry deals with care and management of animals.</li>
+            <li>Good agricultural practices support food production.</li>
+        </ul>
+
+        <h4>Important Questions</h4>
+
+        <ol>
+            <li>What is crop variety improvement?</li>
+            <li>Why is crop protection important?</li>
+            <li>What is animal husbandry?</li>
+            <li>How can food production be improved?</li>
+        </ol>
+        `
+    }
+
+};
+
+function openClass9Science(chapterId) {
+
+    var reader = document.getElementById("class9ScienceReader");
+    var title = document.getElementById("class9ScienceTitle");
+    var content = document.getElementById("class9ScienceContent");
+
+    if (!class9ScienceData[chapterId]) {
+        title.innerHTML = "Chapter Not Found";
+        content.innerHTML = "<p>This chapter is not available yet.</p>";
+        reader.style.display = "block";
+        return;
+    }
+
+    title.innerHTML = class9ScienceData[chapterId].title;
+    content.innerHTML = class9ScienceData[chapterId].content;
+
+    reader.style.display = "block";
+
+    reader.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+    var completed = JSON.parse(
+        localStorage.getItem("class9ScienceCompleted") || "[]"
+    );
+
+    if (completed.indexOf(chapterId) === -1) {
+        completed.push(chapterId);
+        localStorage.setItem(
+            "class9ScienceCompleted",
+            JSON.stringify(completed)
+        );
+    }
+}
+
+function closeClass9Science() {
+
+    var reader = document.getElementById("class9ScienceReader");
+
+    reader.style.display = "none";
+
+}
+
+</script>
+<!-- PART 8 - CLASS 8 MATHS CHAPTER READER -->
+
+<style>
+.class8-math-box {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 1000px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+}
+
+.class8-math-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+}
+
+.class8-math-buttons button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #7c3aed;
+    color: white;
+    font-size: 14px;
+}
+
+.class8-math-buttons button:hover {
+    opacity: 0.85;
+}
+
+.class8-math-reader {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #f5f3ff;
+}
+
+.class8-math-reader h3 {
+    margin-bottom: 12px;
+}
+
+.class8-math-reader h4 {
+    margin-top: 18px;
+}
+
+.class8-math-reader p {
+    line-height: 1.7;
+}
+
+.class8-math-reader li {
+    margin: 8px 0;
+}
+
+.close-math-reader {
+    margin-top: 20px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background: #dc2626;
+    color: white;
+}
+</style>
+
+<section class="class8-math-box">
+
+    <h2>Class 8 Maths - Chapter Reader</h2>
+
+    <p>
+        Select any chapter to read basic notes and practice questions.
+    </p>
+
+    <div class="class8-math-buttons">
+
+        <button onclick="openClass8Math('rational')">
+            Rational Numbers
+        </button>
+
+        <button onclick="openClass8Math('linear')">
+            Linear Equations
+        </button>
+
+        <button onclick="openClass8Math('quadrilaterals')">
+            Understanding Quadrilaterals
+        </button>
+
+        <button onclick="openClass8Math('geometry')">
+            Practical Geometry
+        </button>
+
+        <button onclick="openClass8Math('data')">
+            Data Handling
+        </button>
+
+        <button onclick="openClass8Math('squares')">
+            Squares and Square Roots
+        </button>
+
+        <button onclick="openClass8Math('cubes')">
+            Cubes and Cube Roots
+        </button>
+
+        <button onclick="openClass8Math('quantities')">
+            Comparing Quantities
+        </button>
+
+        <button onclick="openClass8Math('algebra')">
+            Algebraic Expressions
+        </button>
+
+        <button onclick="openClass8Math('solid')">
+            Visualising Solid Shapes
+        </button>
+
+        <button onclick="openClass8Math('mensuration')">
+            Mensuration
+        </button>
+
+        <button onclick="openClass8Math('exponents')">
+            Exponents and Powers
+        </button>
+
+        <button onclick="openClass8Math('proportion')">
+            Direct and Inverse Proportions
+        </button>
+
+        <button onclick="openClass8Math('factorisation')">
+            Factorisation
+        </button>
+
+        <button onclick="openClass8Math('graphs')">
+            Introduction to Graphs
+        </button>
+
+        <button onclick="openClass8Math('numbers')">
+            Playing with Numbers
+        </button>
+
+    </div>
+
+    <div id="class8MathReader" class="class8-math-reader">
+
+        <h3 id="class8MathTitle"></h3>
+
+        <div id="class8MathContent"></div>
+
+        <button class="close-math-reader"
+                onclick="closeClass8Math()">
+            Close Chapter
+        </button>
+
+    </div>
+
+</section>
+
+<script>
+
+var class8MathData = {
+
+    rational: {
+        title: "Rational Numbers",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        Rational numbers are numbers that can be written in the form
+        p divided by q, where p and q are integers and q is not zero.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>Rational numbers include integers and fractions.</li>
+            <li>Denominator cannot be zero.</li>
+            <li>Rational numbers can be positive or negative.</li>
+            <li>They can be represented on a number line.</li>
+            <li>Rational numbers are closed under many basic operations.</li>
+        </ul>
+
+        <h4>Practice Questions</h4>
+
+        <ol>
+            <li>Define a rational number.</li>
+            <li>Write three examples of rational numbers.</li>
+            <li>Can the denominator of a rational number be zero?</li>
+            <li>Represent a rational number on a number line.</li>
+        </ol>
+        `
+    },
+
+    linear: {
+        title: "Linear Equations",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        A linear equation contains a variable whose highest power is one.
+        Solving an equation means finding the value of the variable.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>An equation has an equality sign.</li>
+            <li>A variable represents an unknown value.</li>
+            <li>The same operation should be performed on both sides.</li>
+            <li>The solution makes the equation true.</li>
+        </ul>
+
+        <h4>Practice Questions</h4>
+
+        <ol>
+            <li>Solve x + 7 = 15.</li>
+            <li>Solve 3x = 21.</li>
+            <li>What is a variable?</li>
+            <li>What is a linear equation?</li>
+        </ol>
+        `
+    },
+
+    quadrilaterals: {
+        title: "Understanding Quadrilaterals",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        A quadrilateral is a closed plane figure with four sides,
+        four vertices and four angles.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>A quadrilateral has four sides.</li>
+            <li>The sum of its interior angles is 360 degrees.</li>
+            <li>A parallelogram has opposite sides parallel.</li>
+            <li>A rectangle has four right angles.</li>
+            <li>A square has four equal sides and four right angles.</li>
+        </ul>
+
+        <h4>Practice Questions</h4>
+
+        <ol>
+            <li>What is a quadrilateral?</li>
+            <li>What is the sum of angles of a quadrilateral?</li>
+            <li>Define a parallelogram.</li>
+            <li>Write two properties of a rectangle.</li>
+        </ol>
+        `
+    },
+
+    geometry: {
+        title: "Practical Geometry",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        Practical geometry deals with constructing geometrical figures
+        using tools such as ruler, compass and protractor.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>A ruler is used to draw line segments.</li>
+            <li>A compass is used to draw arcs and circles.</li>
+            <li>A protractor is used to measure angles.</li>
+            <li>Geometrical constructions require accurate measurements.</li>
+        </ul>
+
+        <h4>Practice Questions</h4>
+
+        <ol>
+            <li>Name three tools used in geometry.</li>
+            <li>What is the use of a compass?</li>
+            <li>What is the use of a protractor?</li>
+            <li>Why is accuracy important in construction?</li>
+        </ol>
+        `
+    },
+
+    data: {
+        title: "Data Handling",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        Data handling involves collecting, organising, representing
+        and interpreting information.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>Data can be represented using tables.</li>
+            <li>Bar graphs help compare quantities.</li>
+            <li>Pie charts represent parts of a whole.</li>
+            <li>Mean is obtained by dividing total value by number of observations.</li>
+            <li>Probability describes the chance of an event.</li>
+        </ul>
+
+        <h4>Practice Questions</h4>
+
+        <ol>
+            <li>What is data?</li>
+            <li>What is a bar graph?</li>
+            <li>Define mean.</li>
+            <li>What is probability?</li>
+        </ol>
+        `
+    },
+
+    squares: {
+        title: "Squares and Square Roots",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        The square of a number is obtained by multiplying the number
+        by itself. The square root is the number which gives the
+        original number when multiplied by itself.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>5 squared is 25.</li>
+            <li>The square root of 25 is 5.</li>
+            <li>Perfect squares have whole-number square roots.</li>
+            <li>Square numbers are always non-negative for integers.</li>
+        </ul>
+
+        <h4>Practice Questions</h4>
+
+        <ol>
+            <li>Find the square of 12.</li>
+            <li>Find the square root of 144.</li>
+            <li>What is a perfect square?</li>
+            <li>Write five perfect squares.</li>
+        </ol>
+        `
+    },
+
+    cubes: {
+        title: "Cubes and Cube Roots",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        The cube of a number is obtained by multiplying it by itself
+        three times. Cube root is the number whose cube gives the
+        original number.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>2 cubed is 8.</li>
+            <li>3 cubed is 27.</li>
+            <li>The cube root of 64 is 4.</li>
+            <li>Perfect cubes have whole-number cube roots.</li>
+        </ul>
+
+        <h4>Practice Questions</h4>
+
+        <ol>
+            <li>Find the cube of 5.</li>
+            <li>Find the cube root of 125.</li>
+            <li>What is a perfect cube?</li>
+            <li>Write four perfect cubes.</li>
+        </ol>
+        `
+    },
+
+    quantities: {
+        title: "Comparing Quantities",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        Comparing quantities involves percentages, profit and loss,
+        discounts and simple interest.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>Percentage means per hundred.</li>
+            <li>Profit occurs when selling price is greater than cost price.</li>
+            <li>Loss occurs when selling price is less than cost price.</li>
+            <li>Discount reduces the marked price.</li>
+            <li>Simple interest depends on principal, rate and time.</li>
+        </ul>
+
+        <h4>Practice Questions</h4>
+
+        <ol>
+            <li>What is percentage?</li>
+            <li>Define profit.</li>
+            <li>Define loss.</li>
+            <li>What is discount?</li>
+        </ol>
+        `
+    },
+
+    algebra: {
+        title: "Algebraic Expressions",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        Algebraic expressions contain numbers, variables and mathematical
+        operations.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>Variables represent unknown or changing values.</li>
+            <li>Constants are fixed values.</li>
+            <li>Terms are parts separated by plus or minus signs.</li>
+            <li>Like terms have the same variables with the same powers.</li>
+        </ul>
+
+        <h4>Practice Questions</h4>
+
+        <ol>
+            <li>What is an algebraic expression?</li>
+            <li>What is a variable?</li>
+            <li>What are like terms?</li>
+            <li>Simplify 3x + 2x.</li>
+        </ol>
+        `
+    },
+
+    solid: {
+        title: "Visualising Solid Shapes",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        Solid shapes are three-dimensional objects having length,
+        breadth and height.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>A cube has six faces.</li>
+            <li>A cuboid has six rectangular faces.</li>
+            <li>A cylinder has two circular bases.</li>
+            <li>A cone has one circular base and one vertex.</li>
+            <li>Different views of a solid can show different shapes.</li>
+        </ul>
+
+        <h4>Practice Questions</h4>
+
+        <ol>
+            <li>What is a three-dimensional object?</li>
+            <li>How many faces does a cube have?</li>
+            <li>Describe a cylinder.</li>
+            <li>What is a vertex?</li>
+        </ol>
+        `
+    },
+
+    mensuration: {
+        title: "Mensuration",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        Mensuration deals with measurement of length, area, perimeter
+        and volume of geometrical figures.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>Perimeter is the distance around a closed figure.</li>
+            <li>Area measures the surface covered by a plane figure.</li>
+            <li>Volume measures the space occupied by a solid.</li>
+            <li>Different shapes have different formulas.</li>
+        </ul>
+
+        <h4>Practice Questions</h4>
+
+        <ol>
+            <li>What is perimeter?</li>
+            <li>What is area?</li>
+            <li>What is volume?</li>
+            <li>Find the perimeter of a square of side 5 cm.</li>
+        </ol>
+        `
+    },
+
+    exponents: {
+        title: "Exponents and Powers",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        Exponents provide a short way to write repeated multiplication.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>2 x 2 x 2 can be written as 2 to the power 3.</li>
+            <li>The number being multiplied is called the base.</li>
+            <li>The small raised number is called the exponent.</li>
+            <li>Exponent laws help simplify powers.</li>
+        </ul>
+
+        <h4>Practice Questions</h4>
+
+        <ol>
+            <li>Write 5 x 5 x 5 using exponent notation.</li>
+            <li>What is a base?</li>
+            <li>What is an exponent?</li>
+            <li>Find 2 to the power 5.</li>
+        </ol>
+        `
+    },
+
+    proportion: {
+        title: "Direct and Inverse Proportions",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        Two quantities are in direct proportion when they increase or
+        decrease together in a fixed ratio. In inverse proportion,
+        one quantity increases while the other decreases in a related way.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>Direct proportion keeps the ratio constant.</li>
+            <li>Inverse proportion keeps the product constant.</li>
+            <li>These concepts are useful in everyday calculations.</li>
+        </ul>
+
+        <h4>Practice Questions</h4>
+
+        <ol>
+            <li>What is direct proportion?</li>
+            <li>What is inverse proportion?</li>
+            <li>Give one example of direct proportion.</li>
+            <li>Give one example of inverse proportion.</li>
+        </ol>
+        `
+    },
+
+    factorisation: {
+        title: "Factorisation",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        Factorisation means writing an expression as a product of
+        simpler expressions or factors.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>A factor divides a number or expression exactly.</li>
+            <li>Common factors can be taken outside brackets.</li>
+            <li>Factorisation is useful for simplifying expressions.</li>
+            <li>Algebraic identities can help with factorisation.</li>
+        </ul>
+
+        <h4>Practice Questions</h4>
+
+        <ol>
+            <li>What is factorisation?</li>
+            <li>Find the factors of 24.</li>
+            <li>Factorise 3x + 6.</li>
+            <li>What is a common factor?</li>
+        </ol>
+        `
+    },
+
+    graphs: {
+        title: "Introduction to Graphs",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        Graphs are visual representations of data or relationships
+        between quantities.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>The horizontal axis is usually called the x-axis.</li>
+            <li>The vertical axis is usually called the y-axis.</li>
+            <li>A point can be represented using coordinates.</li>
+            <li>Graphs make numerical information easier to understand.</li>
+        </ul>
+
+        <h4>Practice Questions</h4>
+
+        <ol>
+            <li>What is a graph?</li>
+            <li>What is the x-axis?</li>
+            <li>What is the y-axis?</li>
+            <li>What are coordinates?</li>
+        </ol>
+        `
+    },
+
+    numbers: {
+        title: "Playing with Numbers",
+        content: `
+        <h4>Introduction</h4>
+
+        <p>
+        This topic develops number patterns and methods for working
+        with numbers using divisibility and algebraic ideas.
+        </p>
+
+        <h4>Main Points</h4>
+
+        <ul>
+            <li>Numbers can have different divisibility properties.</li>
+            <li>Divisibility rules make calculations easier.</li>
+            <li>Number patterns can be represented algebraically.</li>
+            <li>Digit-based reasoning can help solve number problems.</li>
+        </ul>
+
+        <h4>Practice Questions</h4>
+
+        <ol>
+            <li>What is divisibility?</li>
+            <li>Write the divisibility rule for 2.</li>
+            <li>Write the divisibility rule for 5.</li>
+            <li>Find a number divisible by both 3 and 5.</li>
+        </ol>
+        `
+    }
+
+};
+
+function openClass8Math(chapterId) {
+
+    var reader = document.getElementById("class8MathReader");
+    var title = document.getElementById("class8MathTitle");
+    var content = document.getElementById("class8MathContent");
+
+    if (!class8MathData[chapterId]) {
+        title.innerHTML = "Chapter Not Found";
+        content.innerHTML =
+            "<p>This chapter is not available yet.</p>";
+        reader.style.display = "block";
+        return;
+    }
+
+    title.innerHTML = class8MathData[chapterId].title;
+    content.innerHTML = class8MathData[chapterId].content;
+
+    reader.style.display = "block";
+
+    reader.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+    var completed = JSON.parse(
+        localStorage.getItem("class8MathCompleted") || "[]"
+    );
+
+    if (completed.indexOf(chapterId) === -1) {
+        completed.push(chapterId);
+
+        localStorage.setItem(
+            "class8MathCompleted",
+            JSON.stringify(completed)
+        );
+    }
+}
+
+function closeClass8Math() {
+
+    var reader = document.getElementById("class8MathReader");
+
+    reader.style.display = "none";
+}
+
+</script>
+</html>
